@@ -1,7 +1,7 @@
 rtlwifi_new
 ===========
 ### This is my personal repo, for origin and updated code goto
-   [lwfinger/rtlwifi_new] https://github.com/lwfinger/rtlwifi_new
+   Visit https://github.com/lwfinger/rtlwifi_new
 
 This code will build on any kernel 4.2 and newer as long as the distro has not modified
 any of the kernel APIs. IF YOU RUN UBUNTU, YOU CAN BE ASSURED THAT THE APIs HAVE CHANGED.
