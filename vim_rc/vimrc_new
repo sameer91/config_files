@@ -38,16 +38,13 @@ call plug#begin('~/.vim/plugged')
 
 " Cool plugins
 Plug 'scrooloose/nerdtree'
-"Plug 'vim-syntastic/syntastic'
 Plug 'jiangmiao/auto-pairs'
 Plug 'skywind3000/asyncrun.vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-Plug 'junegunn/fzf.vim'
+"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+"Plug 'junegunn/fzf.vim'
 Plug 'morhetz/gruvbox'
-"Plug 'Valloric/YouCompleteMe'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-"Plug 'rafi/awesome-vim-colorschemes'
 Plug 'tomasiser/vim-code-dark'
 " Search
 
@@ -69,8 +66,10 @@ call plug#end()
 
 syntax enable
 
-colorscheme codedark
-"let g:gruvbox_underline = '1'
+colorscheme gruvbox
+set background=dark "setting dark mode
+let g:gruvbox_underline = '1'
+let g:gruvbox_contrast_dark = 'dark'
 
 "airline
 set noshowmode
@@ -143,3 +142,6 @@ nnoremap ; :
 
 nmap <Leader>s :write<Enter>
 nmap <Leader>r :redraw!<Enter>
+
+"vim delay
+set timeoutlen=50
