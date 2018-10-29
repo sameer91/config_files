@@ -10,8 +10,11 @@
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 #ZSH_THEME="rkj"
 #ZSH_THEME="random"
-ZSH_THEME="jispwoso"
+#ZSH_THEME="eastwood"
+#ZSH_THEME="jispwoso"
 #ZSH_THEME="powerlevel9k/powerlevel9k"
+ZSH_THEME="arrow"
+
 #POWERLEVEL9K_MODE='awesome-fontconfig'
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -70,9 +73,6 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -101,3 +101,5 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh
+alias pr="export http_proxy=172.16.20.2:3128 && export https_proxy=172.16.20.2:3128"
+alias nopr="export http_proxy='' && export https_proxy=''"

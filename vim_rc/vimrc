@@ -47,7 +47,7 @@ Plug 'google/vim-glaive'
 
 Plug 'scrooloose/nerdtree'
 Plug 'jiangmiao/auto-pairs'
-"Plug 'skywind3000/asyncrun.vim'
+Plug 'skywind3000/asyncrun.vim'
 "Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 "Plug 'junegunn/fzf.vim'
 Plug 'morhetz/gruvbox'
@@ -59,6 +59,8 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'airblade/vim-gitgutter'
 Plug 'yggdroot/indentLine'
 
+Plug 'vim-scripts/conque-GDB'
+
 "Plug 'Shougo/deoplete.nvim'
 "Plug 'roxma/nvim-yarp'
 "Plug 'roxma/vim-hug-neovim-rpc'
@@ -68,7 +70,7 @@ call glaive#Install()
 filetype plugin indent on 
 syntax enable
 
-colorscheme badwolf 
+colorscheme badwolf
 "set background=dark "setting dark mode
 "let g:gruvbox_underline = '1'
 "let g:gruvbox_contrast_dark = 'dark'
@@ -128,12 +130,11 @@ augroup autoformat_settings
     autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format
     autocmd FileType python AutoFormatBuffer yapf
 augroup END
-
 " use google style for clang-format
 Glaive codefmt clang_format_style='google'
 
 " setup for indent line
-let g:indentLine_char = '│'
+let g:indentLine_char = ':'
 
 " To open a new empty buffer
 " This replaces :tabnew which I used to bind to this mapping
@@ -204,5 +205,15 @@ set timeoutlen=1000 ttimeoutlen=0
 "            \ 'spinner': ['fg', 'Label'],
 "            \ 'header':  ['fg', 'Comment'] }
 "let g:asyncrun_open = 1
-map <F5> :<C-U>!g++ -O2 -DLOCAL -std=c++11 -Wall -Wextra -Wno-unused-result -static %:r.cpp -o %:r<CR>
+map <F5> :<C-U>!g++ -O2 -DLOCAL -std=c++14 -g -Wall -Wextra -Wno-unused-result -static %:r.cpp -o %:r<CR>
 map <F9> :<C-U>!./%:r<CR>
+"AsyncRun window
+let g:asyncrun_open = 8
+
+
+"conque gdb
+let g:ConqueTerm_Color = 2         " 1: strip color after 200 lines, 2: always with color
+let g:ConqueTerm_CloseOnEnd = 1    " close conque when program ends running
+let g:ConqueTerm_StartMessages = 0 " display warning messages if conqueTerm is configured incorrectly  
+let g:ConqueTerm_Interrupt = '<C-g><C-c>'
+let g:ConqueTerm_ReadUnfocused = 1
