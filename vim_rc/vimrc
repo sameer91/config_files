@@ -59,7 +59,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'airblade/vim-gitgutter'
 Plug 'yggdroot/indentLine'
 
-Plug 'vim-scripts/conque-GDB'
+"Plug 'vim-scripts/conque-GDB'
 
 "Plug 'Shougo/deoplete.nvim'
 "Plug 'roxma/nvim-yarp'
@@ -134,7 +134,7 @@ augroup END
 Glaive codefmt clang_format_style='google'
 
 " setup for indent line
-let g:indentLine_char = ':'
+let g:indentLine_char = '|'
 
 " To open a new empty buffer
 " This replaces :tabnew which I used to bind to this mapping
@@ -212,8 +212,8 @@ let g:asyncrun_open = 8
 
 
 "conque gdb
-let g:ConqueTerm_Color = 2         " 1: strip color after 200 lines, 2: always with color
-let g:ConqueTerm_CloseOnEnd = 1    " close conque when program ends running
-let g:ConqueTerm_StartMessages = 0 " display warning messages if conqueTerm is configured incorrectly  
-let g:ConqueTerm_Interrupt = '<C-g><C-c>'
-let g:ConqueTerm_ReadUnfocused = 1
+"let g:ConqueTerm_Color = 1         " 1: strip color after 200 lines, 2: always with color
+"let g:ConqueTerm_CloseOnEnd = 1    " close conque when program ends running
+"let g:ConqueTerm_StartMessages = 0 " display warning messages if conqueTerm is configured incorrectly  
+"let g:ConqueTerm_Interrupt = '<C-g><C-c>'
+"let g:ConqueTerm_ReadUnfocused = 1
