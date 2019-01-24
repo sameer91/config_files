@@ -11,7 +11,7 @@
 #ZSH_THEME="robbyrussell"
 #ZSH_THEME="fishy2/themes/fishy2"
 #ZSH_THEME="jovial"
-ZSH_THEME="random"
+ZSH_THEME="bira"
 #ZSH_THEME="classyTouch"
 
 # Set list of themes to pick from when loading at random
@@ -106,4 +106,9 @@ source $ZSH/oh-my-zsh.sh
 alias pr="export http_proxy=172.16.20.2:3128 && export https_proxy=172.16.20.2:3128"
 alias rpr="export http_proxy='' && export https_proxy=''"
 
+#source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+export WORKON_HOME=~/.virtualenvs
+source /usr/bin/virtualenvwrapper.sh
+
