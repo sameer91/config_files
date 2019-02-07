@@ -41,6 +41,8 @@ call plug#begin('~/.vim/plugged')
 " Cool plugins
 Plug 'Valloric/YouCompleteMe'
 
+""Plug 'vim-syntastic/Syntastic'
+
 Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt'
 Plug 'google/vim-glaive'
@@ -68,6 +70,15 @@ call glaive#Install()
 filetype plugin indent on 
 syntax enable
 
+"syntastic
+""set statusline+=%#warningmsg#
+""set statusline+=%{SyntasticStatuslineFlag()}
+""set statusline+=%*
+""
+""let g:syntastic_always_populate_loc_list = 1
+""let g:syntastic_auto_loc_list = 1
+""let g:syntastic_check_on_open = 1
+""let g:syntastic_check_on_wq = 0
 "utilsnips
 " YouCompleteMe and UltiSnips compatibility
 let g:SuperTabDefaultCompletionType    = '<C-n>'
@@ -100,7 +111,23 @@ autocmd FileType c,cpp setlocal expandtab shiftwidth=2 softtabstop=2 cindent
 autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4 autoindent
 
 " setup for ycm
-let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+"let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf_cpp.py'
+"
+
+"will put icons in Vim's gutter on lines that have a diagnostic set.
+"Turning this off will also turn off the YcmErrorLine and YcmWarningLine
+"highlighting
+let g:ycm_enable_diagnostic_signs = 1
+let g:ycm_enable_diagnostic_highlighting = 0
+let g:ycm_always_populate_location_list = 1 "default 0
+let g:ycm_open_loclist_on_ycm_diags = 1 "default 1
+
+let ycm_warning_symbol='#w'
+let ycm_error_symbol='>>'
+
+autocmd BufRead,BufNewFile *.c let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf_c.py'
+autocmd BufRead,BufNewFile *.cpp let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf_cpp.py'
+
 let g:ycm_python_binary_path = 'python3'
 "let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_complete_in_comments_and_strings=1
