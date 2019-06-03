@@ -93,10 +93,10 @@ let g:ycm_key_list_select_completion   = ['<C-j>',  '<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-k>', '<C-p>',  '<Up>']
 
 colorscheme badwolf
-""colorscheme gruvbox
-""set background=dark "setting dark mode
-""let g:gruvbox_underline = '1'
-""let g:gruvbox_contrast_dark = 'hard'
+"colorscheme gruvbox
+"set background=dark "setting dark mode
+"let g:gruvbox_underline = '1'
+"let g:gruvbox_contrast_dark = 'hard'
 
 "airline
 set noshowmode
@@ -194,8 +194,8 @@ nmap <leader>bq :bp <BAR> bd #<CR>
 "map <C-t> :tabn<cr>
 
 "NERDTree settings
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 nnoremap <silent> <Leader>f :NERDTreeToggle<Enter>
 nnoremap <silent> <Leader>v :NERDTreeFind<CR>
 let NERDTreeQuitOnOpen = 1
@@ -243,7 +243,9 @@ set timeoutlen=1000 ttimeoutlen=0
 "            \ 'spinner': ['fg', 'Label'],
 "            \ 'header':  ['fg', 'Comment'] }
 "map <F5> :<C-U>!g++ -O2 -DLOCAL -std=c++14 -g -Wall -Wextra -Wno-unused-result -static %:r.cpp -o %:r<CR>
-map <F5> :<C-U>!g++ -O0 -DLOCAL -std=c++14 -g -Wall -Wextra -Wno-unused-result -static %:r.cpp -o %:r<CR>
+
+
+map <F5> :<C-U>!g++ -O2 -DLOCAL -std=c++14 -g -Wall -Wextra -Wno-unused-result -static %:r.cpp -o %:r<CR>
 map <F9> :<C-U>!./%:r<CR>
 
 "mapping for home, end, and new line from insert mode
