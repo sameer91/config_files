@@ -3,7 +3,7 @@
 set $mod Mod4
 
 # i3lock-color xss-lock xorg-xset xorg-xbacklit pulseaudioctl playerctl xautolock 
-# termite compton dunst nm-applet conky compton-tyrone
+# termite compton dunst nm-applet conky compton-tyrone polybar
 
 font pango:PT Sans, SF Pro, Font Awesome 10
 
