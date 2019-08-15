@@ -1,67 +1,58 @@
 [options]
 
 #font = DejaVu Sans Mono for Powerline 12
-#font = monofur for Powerline Regular 16
-font = Inconsolata-dz for Powerline 12
+font = Meslo LG S for Powerline 12
+#font = Inconsolata-dz for Powerline 12
 scrollback_lines = 10000
 # "system", "on" or "off"
-cursor_blink = system
+cursor_blink = on
 
 # "block", "underline" or "ibeam"
-cursor_shape = underline
+cursor_shape = block
 
 [colors]
 
 # special
-foreground	 =   #c5c8c6
-foreground_bold = #c0c5ce
-background	 =   #1d1f21
-#cursor =  #c5c8c6
-cursor = #c0c5ce
+foreground      = #ffffff
+foreground_bold = #ffffff
+#background      = #161616
+background      = rgba(16,16,16,0.9)
 
 # black
-color0	 =       #1d1f21
-color8	 =       #657370
-
+color0	 =       #1f1f1f
+color8	 =       #4d4d4d
 # red
-color1	 =       #cc342b
-color9	 =       #cc342b
-
+color1	 =       #F81118
+color9	 =       #DE352E
 # green
-color2	 =       #198844
-color10	 =      #198844
-
+color2	 =       #2DC55E
+color10	 =      #1DD361
 # yellow
-color3	 =       #fba922
-color11	 =      #fba922
-
+color3	 =       #ECBA0F
+color11	 =      #F3BD09
 # blue
-color4	 =       #3971ed
-color12	 =      #3971ed
-
+color4	 =       #2A84D2
+color12	 =      #1081D6
 # magenta
-color5	 =       #a36ac7
-color13	 =      #a36ac7
-
+color5	 =       #4E5AB7
+color13	 =      #5350B9
 # cyan
-color6	 =       #3971ed
-color14	 =      #3971ed
-
+color6	 =       #1081D6
+color14	 =      #0F7DDB
 # white
-color7	 =       #c5c8c6
-color15	 =      #ffffff
-
+color7	 =       #D6DBE5
+color15	 =      #FFFFFF
 
 [hints]
 #font = Monospace 12
-#foreground = #dcdccc
-#background = #3f3f3f
-#active_foreground = #e68080
-#active_background = #3f3f3f
-#padding = 2
-#border = #3f3f3f
-#border_width = 0.5
-#roundness = 2.0
+foreground = #dcdccc
+background = #3f3f3f
+active_foreground = #e68080
+active_background = #3f3f3f
+padding = 2
+border = #3f3f3f
+border_width = 0.5
+roundness = 2.0
 
-# vim	 = ft=dosini cms=#%s
+ vim	 = ft=dosini cms=#%s
 

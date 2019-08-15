@@ -1,50 +1,56 @@
 ; vim:ft=dosini
 
 [colors]
-;background = #2B2B2B
-background = #181F29
+background = #1C1C1C
+;background = #383838
 ;foreground = #c4b7c5
-foreground = #ccc
+foreground = #eee
 ;foreground = #444
 background-alt = #80444
 ;foreground = ${xrdb:color7:#222}
 foreground-alt = #555
+focused-background = #446CB3FF
+focused-underline= #22A7F0
 primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
 high = #fff
+bg = ${xrdb:color7:#222}
+;fg = ${xrdb:color0:#222}
+fg-alt = ${xrdb:color7:#222}
+;primary = ${xrdb:color5:#222}
+;secondary = ${xrdb:color2:#222}
 
 
 [bar/wtf]
 width = 100%
 #height = 22
 height = 28
+padding-left = 0
 padding-right = 2
 fixed-center = true
-monitor = ${env:MONITOR:eDP-1}
-;radius = 6.0
-;bottom = true
-pseudo-transparency = true
+monitor = eDP1
+#radius = 6.0
+bottom = true
 
 
 background = ${colors.background}
 foreground = ${colors.foreground}
-
-font-0 = "SFNS Pro Display:size=10;2"
-;font-0 = "PT Sans:size=11;2"
-font-1 = "Font Awesome 5 Free:style=Solid,size=10;2"
-font-2 = "Font Awesome 5 Brands:style=Regular,size=10;2"
-font-3 = Unifonts:size=10;0
-font-4 = siji:size=12;0
-;font-4 = Material\ Icons:size=12;0
+;ttf-font-awesome, awesome-terminal-font ttf-unfont siji-git
+font-0 = PT Sans:pixelsize=12;3
+font-1 = "FontAwesome:size=10;2"
+font-2 = Font Awesome 5 Free:style=Solid:size=10;2
+font-3 = Unifont:size=10;2
+font-4 = Siji:size=8;3
+font-5 = Unifont Upper:size=10;2
 
 
 tray-position = right
 
 module-margin = 1
-modules-left = i3 xwindow
-modules-center = date 
-modules-right = pulseaudio xbacklight cpu temperature mem wireless-network battery powermenu
+modules-left =bspwm i3 xwindow
+modules-center =
+modules-right = pulseaudio xbacklight cpu mem network date battery powermenu
 
 [module/xwindow]
 type = internal/xwindow
@@ -54,6 +60,37 @@ label-background = ${colors.background}
 label-padding = 15
 ;format-underline = ${colors.high}
 
+[module/bspwm]
+type = internal/bspwm
+
+; Only show workspaces defined on the same output as the bar
+; NOTE: The bspwm and XRandR monitor names must match, which they do by default.
+; Default: true
+pin-workspaces = true
+
+; Output mode flags after focused state label
+; Default: false
+inline-mode = false
+
+; Create click handler used to focus workspace
+; Default: true
+enable-click = false
+
+; Create scroll handlers used to cycle workspaces
+; Default: true
+enable-scroll = false
+
+; Set the scroll cycle direction 
+; Default: true
+reverse-scroll = false
+
+; Use fuzzy (partial) matching on labels when assigning 
+; icons to workspaces
+; Example: code;♚ will apply the icon to all workspaces 
+; containing 'code' in the label
+; Default: false
+fuzzy-match = true
+
 [module/i3]
 type = internal/i3
 pin-workspaces = true
@@ -61,9 +98,9 @@ strip-wsnumbers = true
 index-sort = true
 enable-scroll = false
 
-label-unfocused-foreground = #8a7f8f
-;label-focused-foreground = #c16772
-label-focused-foreground = #376EDE
+label-unfocused-foreground = #AAAAAA
+;label-focused-foreground = #0764A7
+label-focused-foreground = #EA5C3C
 label-urgent-foreground = #e4b226
 
 format-padding-right = 2
@@ -73,73 +110,28 @@ label-focused-padding = ${self.label-padding}
 label-unfocused-padding = ${self.label-padding}
 label-visible-padding = ${self.label-padding}
 label-urgent-padding = ${self.label-padding}
-
 #ws-icon-0 = 1;
 #ws-icon-1 = 2;
 #ws-icon-2 = 3;
 #ws-icon-3 = 9;
 
 
-[module/alsa]
-type = internal/alsa
-format-volume =  <ramp-volume>  <bar-volume> <label-volume>
-label-volume = %percentage%%
-label-muted = MUTE
-label-muted-foreground = #66
-ramp-volume-0 = 
-ramp-volume-1 = 
-ramp-volume-2 = 
-ramp-headphones-0 = 
-ramp-headphones-1 = 
-bar-volume-width = 5
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
-bar-volume-gradient = false
-bar-volume-indicator = │
-bar-volume-indicator-font = 2
-bar-volume-indicator-foreground = #ff
-bar-volume-fill = ─
-bar-volume-fill-font = 2
-bar-volume-empty = ─
-bar-volume-empty-font = 2
-bar-volume-empty-foreground =
-
 [module/pulseaudio]
 type = internal/pulseaudio
 sink = alsa_output.pci-0000_00_1f.3.analog-stereo
 use-ui-max = false
 interval = 5
-format-volume =  <ramp-volume>  <bar-volume> <label-volume>
+format-volume =  <ramp-volume>  <label-volume>
 
-; Available tags:
-;   <label-muted> (default)
-;   <ramp-volume>
-;   <bar-volume>
-;format-muted = <label-muted>
-
-; Available tokens:
-;   %percentage% (default)
 label-volume = %percentage%%
 
-; Available tokens:
-;   %percentage% (default)
-label-muted =  MUTE
+label-muted =   0%
 label-muted-foreground = #666
 
-; Only applies if <ramp-volume> is used
 ramp-volume-0 = 
 ramp-volume-1 = 
 ramp-volume-2 = 
 
-; If defined, it will replace <ramp-volume> when
-; headphones are plugged in to `headphone_control_numid`
-; If undefined, <ramp-volume> will be used for both
-; Only applies if <ramp-volume> is used
 ramp-headphones-0 = 
 ramp-headphones-1 = 
 
@@ -160,16 +152,6 @@ bar-volume-fill-font = 2
 bar-volume-empty = ─
 bar-volume-empty-font = 2
 bar-volume-empty-foreground =
-
-
-
-[module/disk-free]
-type = internal/fs
-mount-0 = /
-interval = 10
-fixed-vales = true
-
-label-mounted =  %percentage_free%%
 
 [module/cpu]
 type = internal/cpu
@@ -199,20 +181,24 @@ bar-used-foreground-2 = #f5a70a
 bar-used-foreground-3 = #ff5555
 bar-used-fill = ▐
 bar-used-empty = ▐
-bar-used-empty-foreground = #444444
+bar-used-empty-foreground = #666
+label-font = 3
 
-[module/wireless-network]
+[module/network]
 type = internal/network
 interface = wlo1
+format-connected = <label-connected>
+format-disconnected = <label-disconnected>
 
-label-connected =  %essid% %downspeed:9% %upspeed:9%
+;label-connected =  %essid% :  %downspeed:9%  |  %upspeed:9%
+label-connected =  %ifname% :  %downspeed:9%  |  %upspeed:9%
 label-disconnected =  disconnected
-
-ramp-signal-0 =     ░
-ramp-signal-1 =    ░▒
-ramp-signal-2 =   ░▒▓
-ramp-signal-3 =  ░▒▓█
-ramp-signal-4 = ░▒▓█◘
+ramp-signal-0 = 😱
+ramp-signal-1 = 😠
+ramp-signal-2 = 😒
+ramp-signal-3 = 😊
+ramp-signal-4 = 😃
+ramp-signal-5 = 😈
 
 [module/xbacklight]
 type = internal/xbacklight
@@ -259,41 +245,21 @@ animation-charging-1 = 
 animation-charging-2 = 
 animation-charging-3 = 
 animation-charging-4 = 
-animation-charging-framerate = 500
-
-[module/temperature]
-type = internal/temperature
-interval = 0.5
-thermal-zone = 6
-hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon2/temp1_input
-warn-temperature = 80
-
-format = <ramp> <label>
-format-underline = #f50a4d
-format-warn = <ramp> <label-warn>
-format-warn-underline = ${self.format-underline}
-
-label = %temperature-c%
-label-warn = %temperature-c%
-label-warn-foreground = ${colors.secondary}
-
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-foreground = ${colors.foreground}
+animation-charging-foreground = #228B22
+animation-charging-framerate = 750
 
 [module/powermenu]
 type = custom/menu
 
 expand-right = true
 
-format-spacing = 1
+format-spacing = 1 
 
 label-open = 
 label-open-foreground = ${colors.secondary}
 label-close =  cancel
 label-close-foreground = ${colors.secondary}
-label-separator = |
+label-separator = | 
 label-separator-foreground = ${colors.foreground-alt}
 
 menu-0-0 = reboot
@@ -312,29 +278,14 @@ menu-2-1 = cancel
 menu-2-1-exec = menu-open-0
 
 
-#
-#[module/date]
-#type = internal/date
-#label =  %date%  %time%
-#date = %a, %d %b
-#time = %H:%M
-#interval = 1.0
 [module/date]
 type = internal/date
 interval = 1
-
 time-alt = "%a | %m.%d.%Y | %I:%M %p"
 time = "%I:%M %p"
-
 format-prefix = " "
 format-underline =  ${colors.high}
-;format-foreground =  #fff
-format-foreground =  #fff
+format-foreground =  color.foreground
 
 label = %date% %time%
 
-
-[module/vpn]
-type = custom/script
-exec = ip l | grep budget-kick > /dev/null && printf "\n" || printf "\n"
-interval = 10
