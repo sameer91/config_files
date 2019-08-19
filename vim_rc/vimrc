@@ -7,12 +7,15 @@ filetype off
 "
 " turn hybrid line numbers on
 set number ""relativenumber
-"set nu rnu
+set nu rnu
+set foldmethod=indent
+set foldlevel=99
 set backspace=indent,eol,start  "Allow backspace in insert mode
 set showcmd                     "Show incomplete cmds down the bottom
 set showmode                    "Show current mode down the bottom
 set autoread                    "Reload files changed outside vim
-"set mouse=a
+set mouse=a
+set encoding=utf-8
 
 " This makes vim act like all other editors, buffers can
 " exist in the background without being in a window.
@@ -46,8 +49,7 @@ call plug#begin('~/.vim/plugged')
 
 " Cool plugins
 "Plug 'Valloric/YouCompleteMe'
-
-""Plug 'vim-syntastic/Syntastic'
+"Plug 'vim-syntastic/Syntastic'
 
 Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt'
@@ -55,18 +57,19 @@ Plug 'google/vim-glaive'
 
 Plug 'scrooloose/nerdtree'
 Plug 'jiangmiao/auto-pairs'
-"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-"Plug 'junegunn/fzf.vim'
-Plug 'morhetz/gruvbox'
+"Plug 'morhetz/gruvbox'
+Plug 'lifepillar/vim-gruvbox8'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-"Plug 'tomasiser/vim-code-dark'
+Plug 'jnurmine/Zenburn'
 Plug 'sjl/badwolf'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'airblade/vim-gitgutter'
 Plug 'yggdroot/indentLine'
 Plug 'tpope/vim-fugitive'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'kien/ctrlp.vim'
+Plug 'vim-scripts/indentpython.vim'
 
 "Plug 'SirVer/ultisnips'
 "Plug 'honza/vim-snippets'
@@ -77,15 +80,6 @@ call glaive#Install()
 filetype plugin indent on 
 syntax enable
 
-"syntastic
-""set statusline+=%#warningmsg#
-""set statusline+=%{SyntasticStatuslineFlag()}
-""set statusline+=%*
-""
-""let g:syntastic_always_populate_loc_list = 1
-""let g:syntastic_auto_loc_list = 1
-""let g:syntastic_check_on_open = 1
-""let g:syntastic_check_on_wq = 0
 "utilsnips
 " YouCompleteMe and UltiSnips compatibility
 "let g:SuperTabDefaultCompletionType    = '<C-n>'
@@ -96,10 +90,10 @@ syntax enable
 "let g:ycm_key_list_previous_completion = ['<C-k>', '<C-p>',  '<Up>']
 
 "colorscheme badwolf
-"colorscheme gruvbox
-"set background=dark "setting dark mode
-"let g:gruvbox_underline = '1'
-"let g:gruvbox_contrast_dark = 'hard'
+colorscheme gruvbox8_hard
+set background=dark "setting dark mode
+let g:gruvbox_underline = '1'
+let g:gruvbox_contrast_dark = 'hard'
 
 "airline
 set noshowmode
@@ -115,7 +109,21 @@ nnoremap <C-H> <C-W><C-H>
 
 " indent for special file
 autocmd FileType c,cpp setlocal expandtab shiftwidth=2 softtabstop=2 cindent 
-autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4 autoindent
+au BufNewFile,BufRead *.py
+    \ set tabstop=4
+    \ set softtabstop=4
+    \ set shiftwidth=4
+    \ set textwidth=79
+    \ set expandtab
+    \ set autoindent
+    \ set fileformat=unix
+au BufNewFile,BufRead *.js, *.html, *.css
+    \ set tabstop=2
+    \ set softtabstop=2
+    \ set shiftwidth=2
+"flag white spaces
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+
 
 "text formatting
 augroup autoformat_settings
@@ -303,6 +311,8 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
+"enable folding with space 
+nnoremap <space>	za
 "mapping for home, end, and new line from insert mode
 "imap <C-j> <Esc>o
 "imap <C-k> <Esc>O
