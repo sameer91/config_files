@@ -1,11 +1,7 @@
+" pip3 install -U pylint yapf pynvim
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 filetype off
-
-" ================ General Config ====================
-"
-"
-" turn hybrid line numbers on
 set number ""relativenumber
 set nu rnu
 set foldmethod=indent
@@ -14,15 +10,9 @@ set backspace=indent,eol,start  "Allow backspace in insert mode
 set showcmd                     "Show incomplete cmds down the bottom
 set showmode                    "Show current mode down the bottom
 set autoread                    "Reload files changed outside vim
-set mouse=a
+set guifont=Fira\ Code\ 12
+"set mouse=a
 set encoding=utf-8
-
-" This makes vim act like all other editors, buffers can
-" exist in the background without being in a window.
-" http://items.sjbach.com/319/configuring-vim-right
-"set hidden
-
-"turn on syntax highlighting
 syntax on
 
 " ================ Indentation ======================
@@ -34,22 +24,12 @@ set shiftwidth=4
 set softtabstop=4
 set tabstop=4
 
-" configure expanding of tabs for various file types
-au BufRead,BufNewFile *.py set expandtab
-au BufRead,BufNewFile *.c set noexpandtab
-au BufRead,BufNewFile *.h set noexpandtab
-au BufRead,BufNewFile Makefile* set noexpandtab
 " Auto indent pasted text
 nnoremap p p=`]<C-o>
 nnoremap P P=`]<C-o>
-"dowload vim plug in ~/.vim
-"curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 call plug#begin('~/.vim/plugged')
 
-" Cool plugins
-"Plug 'Valloric/YouCompleteMe'
-"Plug 'vim-syntastic/Syntastic'
 
 Plug 'google/vim-maktaba'
 Plug 'google/vim-codefmt'
@@ -70,24 +50,31 @@ Plug 'tpope/vim-fugitive'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'kien/ctrlp.vim'
 Plug 'vim-scripts/indentpython.vim'
-
-"Plug 'SirVer/ultisnips'
-"Plug 'honza/vim-snippets'
-"Plug 'ervandew/supertab'
+Plug 'plytophogy/vim-virtualenv'
+Plug 'dense-analysis/ale'
 
 call plug#end()
+
 call glaive#Install()
+" Optional: Enable codefmt's default mappings on the <Leader>= prefix.
+Glaive codefmt plugin[mappings]
+Glaive codefmt google_java_executable="java -jar /path/to/google-java-format-VERSION-all-deps.jar"
+augroup autoformat_settings
+  autocmd FileType bzl AutoFormatBuffer buildifier
+  autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format
+  autocmd FileType dart AutoFormatBuffer dartfmt
+  autocmd FileType go AutoFormatBuffer gofmt
+  autocmd FileType gn AutoFormatBuffer gn
+  autocmd FileType html,css,sass,scss,less,json AutoFormatBuffer js-beautify
+  autocmd FileType java AutoFormatBuffer google-java-format
+  autocmd FileType python AutoFormatBuffer yapf
+  " Alternative: autocmd FileType python AutoFormatBuffer autopep8
+  autocmd FileType vue AutoFormatBuffer prettier
+augroup END
+
 filetype plugin indent on 
 syntax enable
 
-"utilsnips
-" YouCompleteMe and UltiSnips compatibility
-"let g:SuperTabDefaultCompletionType    = '<C-n>'
-"let g:UltiSnipsExpandTrigger="<tab>"
-"let g:UltiSnipsJumpForwardTrigger="<tab>"
-"let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-"let g:ycm_key_list_select_completion   = ['<C-j>',  '<C-n>', '<Down>']
-"let g:ycm_key_list_previous_completion = ['<C-k>', '<C-p>',  '<Up>']
 
 "colorscheme badwolf
 colorscheme gruvbox8_hard
@@ -111,33 +98,22 @@ nnoremap <C-H> <C-W><C-H>
 autocmd FileType c,cpp setlocal expandtab shiftwidth=2 softtabstop=2 cindent 
 au BufNewFile,BufRead *.py
     \ set tabstop=4
-    \ set softtabstop=4
-    \ set shiftwidth=4
-    \ set textwidth=79
-    \ set expandtab
-    \ set autoindent
-    \ set fileformat=unix
+	\ softtabstop=4
+    \ shiftwidth=4
+    \ textwidth=79
+    \ expandtab
+    \ autoindent
+    \ fileformat=unix
 au BufNewFile,BufRead *.js, *.html, *.css
-    \ set tabstop=2
-    \ set softtabstop=2
-    \ set shiftwidth=2
+    \ set tabstop=2 softtabstop=2 shiftwidth=2
+
 "flag white spaces
-au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
-
-
-"text formatting
-augroup autoformat_settings
-    autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format
-    autocmd FileType python AutoFormatBuffer yapf
-augroup END
-" use google style for clang-format
-Glaive codefmt clang_format_style='google'
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match Error /\s\+$/
 
 " setup for indent line
 let g:indentLine_char = ':'
 
 " To open a new empty buffer
-" This replaces :tabnew which I used to bind to this mapping
 nmap <leader>T :enew!<cr>
 
 " Move to the next buffer
@@ -147,7 +123,6 @@ nmap <leader>l :bnext<CR>
 nmap <leader>h :bprevious<CR>
 
 " Close the current buffer and move to the previous one
-" This replicates the idea of closing a tab
 nmap <leader>bq :bp <BAR> bd #<CR>
 
 " Show all open buffers and their status
@@ -155,9 +130,9 @@ nmap <leader>bq :bp <BAR> bd #<CR>
 "tabs
 "map <C-t> :tabn<cr>
 
+nmap <C-h> :set hlsearch
+
 "NERDTree settings
-"autocmd StdinReadPre * let s:std_in=1
-"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 nnoremap <silent> <Leader>f :NERDTreeToggle<Enter>
 nnoremap <silent> <Leader>v :NERDTreeFind<CR>
 let NERDTreeQuitOnOpen = 1
@@ -165,8 +140,6 @@ let NERDTreeQuitOnOpen = 1
 " Better search
 set hlsearch
 set incsearch
-
-autocmd FocusLost * silent! wa " Automatically save file
 
 set scrolloff=5 " Keep 5 lines below and above the cursor
 
@@ -256,8 +229,8 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <leader>rn <Plug>(coc-rename)
 
 " Remap for format selected region
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+vmap <leader>p  <Plug>(coc-format-selected)
+nmap <leader>p  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
@@ -313,58 +286,3 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 "enable folding with space 
 nnoremap <space>	za
-"mapping for home, end, and new line from insert mode
-"imap <C-j> <Esc>o
-"imap <C-k> <Esc>O
-"imap <C-l> <Esc>A
-
-"" setup for ycm
-""let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf_cpp.py'
-""
-"
-""will put icons in Vim's gutter on lines that have a diagnostic set.
-""Turning this off will also turn off the YcmErrorLine and YcmWarningLine
-""highlighting
-"let g:ycm_enable_diagnostic_signs = 1
-"let g:ycm_enable_diagnostic_highlighting = 0
-"let g:ycm_always_populate_location_list = 1 "default 0
-"let g:ycm_open_loclist_on_ycm_diags = 1 "default 1
-"
-"let ycm_warning_symbol='#w'
-"let ycm_error_symbol='>>'
-"
-"autocmd BufRead,BufNewFile *.c let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf_c.py'
-"autocmd BufRead,BufNewFile *.cpp let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf_cpp.py'
-"
-"let g:ycm_python_binary_path = 'python3'
-""let g:ycm_autoclose_preview_window_after_completion = 1
-"let g:ycm_complete_in_comments_and_strings=1
-"let g:ycm_autoclose_preview_window_after_insertion = 1
-"
-"" turn on completion in comments
-"let g:ycm_complete_in_comments=1
-"" load ycm conf by default
-"let g:ycm_confirm_extra_conf=0
-"" turn on tag completion
-"let g:ycm_collect_identifiers_from_tags_files=1
-"" only show completion as a list instead of a sub-window
-"set completeopt-=preview,longest,menuone
-""start completion from the first character
-"let g:ycm_min_num_of_chars_for_completion=2
-"" don't cache completion items
-"let g:ycm_cache_omnifunc=0
-"" complete syntax keywords
-"let g:ycm_seed_identifiers_with_syntax=1
-"
-"nnoremap <leader>gc :YcmCompleter GoToDeclaration<CR>
-"nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
-"nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
-"nmap <leader>gd     :YcmDiags<CR>
-"
-"let g:ycm_semantic_triggers =  {
-"            \ 'c' : ['re!\w{2}'],
-"            \ 'cpp' : ['re!\w{2}'],
-"            \ 'python' : ['re!\w{2}'],
-"            \ }
-
-

@@ -31,7 +31,7 @@ i3lock \
 --blur 5              \
 --clock               \
 --indicator           \
---timestr="%H:%M:%S"  \
+--timestr="%T"  \
 --datestr="%A, %m %Y" \
 --keylayout 2         \
 

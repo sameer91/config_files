@@ -24,8 +24,8 @@ fg-alt = ${xrdb:color7:#222}
 
 [bar/wtf]
 width = 100%
-#height = 22
-height = 28
+height = 22
+;height = 28
 padding-left = 0
 padding-right = 2
 fixed-center = true
@@ -36,9 +36,10 @@ bottom = true
 
 background = ${colors.background}
 foreground = ${colors.foreground}
-;ttf-font-awesome, awesome-terminal-font ttf-unfont siji-git
+
 font-0 = PT Sans:pixelsize=12;3
-font-1 = "FontAwesome:size=10;2"
+#font-1 = "FontAwesome:size=10;2"
+font-1 = "Hack Nerd Font:size=10;2"
 font-2 = Font Awesome 5 Free:style=Solid:size=10;2
 font-3 = Unifont:size=10;2
 font-4 = Siji:size=8;3

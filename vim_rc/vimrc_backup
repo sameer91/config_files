@@ -1,72 +1,379 @@
+" This must be first, because it changes other options as a side effect.
 set nocompatible
-
-syntax on
-set number
-set ruler
-set showcmd
-set showmode
-set tabstop=2
-set smartindent
-set shiftwidth=2
-set softtabstop=2
-set expandtab
-colorscheme codedark
-set gcr=a:blinkon0
-set visualbell
-set autoread
-set hidden
-
-"Auto indent pasted text
-nnoremap p p=`]<C-o>
-nnoremap p p=`]<C-o>
-
-
-"add vundle
-
 filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
 
-call vundle#begin()
+" ================ General Config ====================
+"
+"
+" turn hybrid line numbers on
+set number ""relativenumber
+set nu rnu
+set foldmethod=indent
+set foldlevel=99
+set backspace=indent,eol,start  "Allow backspace in insert mode
+set showcmd                     "Show incomplete cmds down the bottom
+set showmode                    "Show current mode down the bottom
+set autoread                    "Reload files changed outside vim
+"set mouse=a
+set encoding=utf-8
 
-Plugin 'VundleVim/Vundle.vim'
+" This makes vim act like all other editors, buffers can
+" exist in the background without being in a window.
+" http://items.sjbach.com/319/configuring-vim-right
+"set hidden
 
-Plugin 'Valloric/YouCompleteMe'
+"turn on syntax highlighting
+syntax on
 
-Plugin 'scrooloose/syntastic'
+" ================ Indentation ======================
 
-Plugin 'scrooloose/nerdtree'
+set autoindent
+set smartindent
+set smarttab
+"set shiftwidth=4
+"set softtabstop=4
+set tabstop=4
 
-Plugin 'jiangmiao/auto-pairs'
+" configure expanding of tabs for various file types
+" Auto indent pasted text
+nnoremap p p=`]<C-o>
+nnoremap P P=`]<C-o>
+"dowload vim plug in ~/.vim
+"curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-"Plugin 'itchyny/lightline.vim'
+call plug#begin('~/.vim/plugged')
 
-call vundle#end()
-filetype plugin indent on
+" Cool plugins
+"Plug 'Valloric/YouCompleteMe'
+"Plug 'vim-syntastic/Syntastic'
 
-"Syntastic Settings
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+Plug 'google/vim-maktaba'
+Plug 'google/vim-codefmt'
+Plug 'google/vim-glaive'
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-"YCM C lang setting
-let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/.ycm_extra_conf.py'
-"let g:ycm_confirm_extra_conf=0
+Plug 'scrooloose/nerdtree'
+Plug 'jiangmiao/auto-pairs'
+"Plug 'morhetz/gruvbox'
+Plug 'lifepillar/vim-gruvbox8'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'jnurmine/Zenburn'
+Plug 'sjl/badwolf'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'airblade/vim-gitgutter'
+Plug 'yggdroot/indentLine'
+Plug 'tpope/vim-fugitive'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'kien/ctrlp.vim'
+Plug 'vim-scripts/indentpython.vim'
+Plug 'plytophogy/vim-virtualenv'
+
+"Plug 'SirVer/ultisnips'
+"Plug 'honza/vim-snippets'
+"Plug 'ervandew/supertab'
+
+call plug#end()
+
+call glaive#Install()
+" Optional: Enable codefmt's default mappings on the <Leader>= prefix.
+Glaive codefmt plugin[mappings]
+Glaive codefmt google_java_executable="java -jar /path/to/google-java-format-VERSION-all-deps.jar"
+augroup autoformat_settings
+  autocmd FileType bzl AutoFormatBuffer buildifier
+  autocmd FileType c,cpp,proto,javascript AutoFormatBuffer clang-format
+  autocmd FileType dart AutoFormatBuffer dartfmt
+  autocmd FileType go AutoFormatBuffer gofmt
+  autocmd FileType gn AutoFormatBuffer gn
+  autocmd FileType html,css,sass,scss,less,json AutoFormatBuffer js-beautify
+  autocmd FileType java AutoFormatBuffer google-java-format
+  autocmd FileType python AutoFormatBuffer yapf
+  " Alternative: autocmd FileType python AutoFormatBuffer autopep8
+  autocmd FileType vue AutoFormatBuffer prettier
+augroup END
+
+filetype plugin indent on 
+syntax enable
+
+
+"colorscheme badwolf
+colorscheme gruvbox8_hard
+set background=dark "setting dark mode
+let g:gruvbox_underline = '1'
+let g:gruvbox_contrast_dark = 'hard'
+
+"airline
+set noshowmode
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+
+
+"split navigation
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" indent for special file
+autocmd FileType c,cpp setlocal expandtab shiftwidth=2 softtabstop=2 cindent 
+au BufNewFile,BufRead *.py
+    \ set tabstop=4
+	\ softtabstop=4
+    \ shiftwidth=4
+    \ textwidth=79
+    \ expandtab
+    \ autoindent
+    \ fileformat=unix
+au BufNewFile,BufRead *.js, *.html, *.css
+    \ set tabstop=2 softtabstop=2 shiftwidth=2
+
+"flag white spaces
+":match ExtraWhitespace /\s\+$/
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match Error /\s\+$/
+
+
+" use google style for clang-format
+
+
+
+" setup for indent line
+let g:indentLine_char = ':'
+
+" To open a new empty buffer
+" This replaces :tabnew which I used to bind to this mapping
+nmap <leader>T :enew!<cr>
+
+" Move to the next buffer
+nmap <leader>l :bnext<CR>
+
+" Move to the previous buffer
+nmap <leader>h :bprevious<CR>
+
+" Close the current buffer and move to the previous one
+" This replicates the idea of closing a tab
+nmap <leader>bq :bp <BAR> bd #<CR>
+
+" Show all open buffers and their status
+"nmap <leader>bl :ls<CR>
+"tabs
+"map <C-t> :tabn<cr>
+
 "NERDTree settings
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-nnoremap <Leader>f :NERDTreeToggle<Enter>
+"autocmd StdinReadPre * let s:std_in=1
+"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+nnoremap <silent> <Leader>f :NERDTreeToggle<Enter>
 nnoremap <silent> <Leader>v :NERDTreeFind<CR>
 let NERDTreeQuitOnOpen = 1
-"autocmd bufenter * if (winnr(“$”) == 1 && exists(“b:NERDTreeType”) && b:NERDTreeType == “primary”) | q | endif
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
-"better search
+
+" Better search
 set hlsearch
 set incsearch
-"Keep 5 line below and above the cursor
-set scrolloff=5
+
+"autocmd FocusLost * silent! wa " Automatically save file
+
+set scrolloff=5 " Keep 5 lines below and above the cursor
+
+set cursorline
+
+set laststatus=2
+set statusline=%f "tail of the filename
+set statusline+=\ c:%c
+
+autocmd VimResized * wincmd = " Automatically resize splits when resizing window
+
+"too convinient
+nnoremap ; : 
+
+"vim delay
+set timeoutlen=1000 ttimeoutlen=0
+
+
+map <F5> :<C-U>!g++ -O2 -DLOCAL -std=c++14 -g -Wall -Wextra -Wno-unused-result -static %:r.cpp -o %:r<CR>
+map <F9> :<C-U>!./%:r<CR>
+
+"coc config
+" if hidden is not set, TextEdit might fail.
+set hidden
+
+" Some servers have issues with backup files, see #649
+set nobackup
+set nowritebackup
+
+" Better display for messages
+set cmdheight=2
+
+" You will have bad experience for diagnostic messages when it's default 4000.
+set updatetime=300
+
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+
+" always show signcolumns
+set signcolumn=yes
+
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Use `[c` and `]c` to navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Remap for format selected region
+"xmap <leader>f  <Plug>(coc-format-selected)
+"nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap for do codeAction of current line
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Fix autofix problem of current line
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Use <tab> for select selections ranges, needs server support, like: coc-tsserver, coc-python
+nmap <silent> <TAB> <Plug>(coc-range-select)
+xmap <silent> <TAB> <Plug>(coc-range-select)
+xmap <silent> <S-TAB> <Plug>(coc-range-select-backword)
+
+" Use `:Format` to format current buffer
+command! -nargs=0 Format :call CocAction('format')
+
+" Use `:Fold` to fold current buffer
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" use `:OR` for organize import of current buffer
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+" Add status line support, for integration with other plugin, checkout `:h coc-status`
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+" Using CocList
+" Show all diagnostics
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions
+nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
+" Show commands
+nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document
+nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols
+nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list
+nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+"enable folding with space 
+nnoremap <space>	za
+
+""vim syntastic
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
+
+"mapping for home, end, and new line from insert mode
+"imap <C-j> <Esc>o
+"imap <C-k> <Esc>O
+"imap <C-l> <Esc>A
+
+"" setup for ycm
+""let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf_cpp.py'
+""
+"
+""will put icons in Vim's gutter on lines that have a diagnostic set.
+""Turning this off will also turn off the YcmErrorLine and YcmWarningLine
+""highlighting
+"let g:ycm_enable_diagnostic_signs = 1
+"let g:ycm_enable_diagnostic_highlighting = 0
+"let g:ycm_always_populate_location_list = 1 "default 0
+"let g:ycm_open_loclist_on_ycm_diags = 1 "default 1
+"
+"let ycm_warning_symbol='#w'
+"let ycm_error_symbol='>>'
+"
+"autocmd BufRead,BufNewFile *.c let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf_c.py'
+"autocmd BufRead,BufNewFile *.cpp let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf_cpp.py'
+"
+"let g:ycm_python_binary_path = 'python3'
+""let g:ycm_autoclose_preview_window_after_completion = 1
+"let g:ycm_complete_in_comments_and_strings=1
+"let g:ycm_autoclose_preview_window_after_insertion = 1
+"
+"" turn on completion in comments
+"let g:ycm_complete_in_comments=1
+"" load ycm conf by default
+"let g:ycm_confirm_extra_conf=0
+"" turn on tag completion
+"let g:ycm_collect_identifiers_from_tags_files=1
+"" only show completion as a list instead of a sub-window
+"set completeopt-=preview,longest,menuone
+""start completion from the first character
+"let g:ycm_min_num_of_chars_for_completion=2
+"" don't cache completion items
+"let g:ycm_cache_omnifunc=0
+"" complete syntax keywords
+"let g:ycm_seed_identifiers_with_syntax=1
+"
+"nnoremap <leader>gc :YcmCompleter GoToDeclaration<CR>
+"nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
+"nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
+"nmap <leader>gd     :YcmDiags<CR>
+"
+"let g:ycm_semantic_triggers =  {
+"            \ 'c' : ['re!\w{2}'],
+"            \ 'cpp' : ['re!\w{2}'],
+"            \ 'python' : ['re!\w{2}'],
+"            \ }
+
 

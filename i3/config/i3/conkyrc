@@ -38,7 +38,7 @@ draw_graph_borders no
 stippled_borders 0
 border_margin 5
 border_width 1
-default_color 271414
+default_color E9BE89
 default_shade_color 000000
 default_outline_color 000000
 alignment top_right
@@ -63,7 +63,7 @@ own_window_colour 000000
 TEXT
 ${goto 245}${voffset 25}${font GeosansLight:size=25} Today
 ${goto 0}${voffset -}${font GeosansLight:light:size=70}${time %I:%M:%S}${image .conky/blackline.png -p 350,26 -s 10x189}
-${offset 150}${voffset -55}${font GeosansLight:size=17}${time %A, %d %B}
+${offset 100}${voffset -55}${font GeosansLight:size=17}${time %A, %d %B}
 ${offset 380}${voffset -177}${font GeosansLight:size=25}Systems${font GeosansLight:size=22}
 ${offset 400}${voffset 5}${font GeosansLight:size=15}$acpitemp'C
 ${offset 400}${voffset 10}${cpu cpu0}% / 100%

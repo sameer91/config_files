@@ -2,10 +2,7 @@
 # Setting mod to ALT (left & right) key
 set $mod Mod4
 
-# i3lock-color xss-lock xorg-xset xorg-xbacklit pulseaudioctl playerctl xautolock 
-# termite compton dunst nm-applet conky compton-tyrone polybar
-
-font pango:PT Sans, SF Pro, Font Awesome 10
+font pango:PT Sans, SF Pro, FontAwesome 10
 
 #for_window [class="^.*"] border pixel 2
 default_border pixel
@@ -29,7 +26,7 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
 # start a terminal
-bindsym $mod+Return exec termite
+bindsym $mod+Return exec kitty
 bindsym $mod+t		exec gnome-terminal
 
 # kill focused window
@@ -37,7 +34,7 @@ bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
 
-bindsym $mod+d exec "rofi -show drun -modi drun,window -markup -show-icons -sidebar-mode -terminal termite"
+bindsym $mod+d exec "rofi -show drun -modi drun,window,run -markup -show-icons -sidebar-mode -terminal kitty"
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -106,9 +103,9 @@ bindsym $mod+a focus parent
 #set $ws8 "8"
 #set $ws9 "9"
 #set $ws10 "10"
-set $ws1  "1: _1"
+set $ws1  "1: _1"
 set $ws2  "2: 2"
-set $ws3  "3: _3"
+set $ws3  "3: _3"
 set $ws4  "4: _4"
 set $ws5  "5: _5"
 set $ws6  "6: _6"
@@ -118,14 +115,25 @@ set $ws9  "9: _9"
 set $ws10 "10: _10"
 
 #assign workspace
-assign [class="firefox"]	$ws1
-assign [class="Brave"]		$ws1
-#assign [class="kitty"]		$ws2
+assign [class="firefox"]	$ws3
+assign [class="Brave"]		$ws3
 assign [class="vlc"]		$ws4
-assign [class="evince"]		$ws3
-assign [class="code"]		$ws3
+assign [class="totem"]		$ws4
+assign [class="clementine"]		$ws4
+assign [class="evince"]		$ws1
+assign [class="code"]		$ws1
 for_window [class="Spotify"] move to workspace $ws7
-for_window [workspace=$ws1] layout tabbed
+for_window [workspace=$ws3] layout tabbed
+for_window [class="kitty"] title_format "<span font='10'>  </span><span font='10'>%title</span>"
+for_window [class="firefox"] title_format "<span font='10'>  </span><span font='10'>%title</span>"
+for_window [class="Spotify"] title_format "<span font='10'>  </span><span font='10'>%title</span>"
+for_window [class="firefox"] border pixel 2
+for_window [class="Spotify"] border pixel 0
+
+for_window [title="Network Connections"] floating enable 
+
+#for_window [floating] move position center
+for_window [floating] border pixel 2
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -192,9 +200,7 @@ bindsym $mod+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 #bar {
-#	font pango:inconsolata 10
-#	tray_output primary
-#	status_command .config/i3/bumblebee-status/bumblebee-status -m title pacman cpu traffic battery pasink pasource datetime -p engine.workspacewrap=false  memory.format="{percent:05.02f}%" traffic.states="^down" traffic.exclude="tun0,tun1,tun2,lo,vpn0,vpn1,vpn2" datetime.format="%H:%M - %d/%m/%y" -t greyish-powerline
+#		 status_command i3blocks
 #}
 
 # Color config
@@ -247,8 +253,8 @@ bindsym XF86AudioPrev exec playerctl previous
 
 
 
-#exec_always --no-startup-id "killall -q compton; compton" 
-exec_always --no-startup-id "killall -q compton; compton --config ~/.config/compton/save/compton.conf" 
+exec_always --no-startup-id "killall -q compton; compton" 
+#exec_always --no-startup-id "killall -q compton; compton --config ~/.config/compton/save/compton.conf" 
 
 exec_always --no-startup-id "killall -q dunst; dunst &; sleep 0.5; notify-send hello" 
 
@@ -259,12 +265,14 @@ exec_always --no-startup-id $HOME/.config/i3/setwal.sh
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 #exec --no-startup-id xss-lock -- i3lock --color=4c7899 -n --ignore-empty-password --show-failed-attempts --nofork -i ~/Pictures/Wallpapers/arch.png
-exec_always --no-startup-id xss-lock -- ~/.config/i3/lock.sh
+#exec_always --no-startup-id xss-lock -- ~/.config/i3/lock.sh
+exec_always --no-startup-id xss-lock -- gllock
 
-exec_always "~/.config/i3/autolock"
+#exec_always "~/.config/i3/autolock"
 exec_always --no-startup-id "numlockx"
 exec --no-startup-id "killall -q conky; conky -c ~/.config/i3/conkyrc"
 exec gnome-settings-daemon
+exec xfce4-power-manager
 
 
 
