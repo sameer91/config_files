@@ -5,12 +5,13 @@
  */
 /* global settings and color variables */
 configuration {
+	drun-display-format: "{icon} {name}";
+	columns: 2;
 }
 * {
    maincolor:        #dd583a;
    highlight:        bold #dd583a;
    urgentcolor:      #fe9b3d;
-
    fgwhite:          #cfcfcf;
    blackdarkest:     #121212;
    blackwidget:      #121212;
@@ -18,7 +19,7 @@ configuration {
    blackselect:      #303030;
    darkgray:         #848484;
    scrollbarcolor:   #505050;
-//   font: "kakwafont 10";
+   font: "Iosevka 14";
    background-color: @blackdarkest;
 }
 
@@ -33,9 +34,11 @@ window {
 mainbox {
    background-color: @blackdarkest;
    spacing:0px;
+   children: [inputbar, message, mode-switcher, listview];
 }
 
 message {
+   padding: 6px 10px;
    background-color:@blackwidget;
 }
 

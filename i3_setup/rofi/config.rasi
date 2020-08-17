@@ -1,0 +1,10 @@
+configuration {
+	show-icons:	true;
+	icon-theme:	"Papirus";
+	sorting-method:	"fzf";
+	location: 0;
+	yoffset: 0;
+	xoffset: 0;
+	theme: "themes/flat-red.rasi";
+	terminal: "termite";
+}

@@ -2,16 +2,25 @@
 # Setting mod to ALT (left & right) key
 set $mod Mod4
 
-font pango:PT Sans, SF Pro, FontAwesome 10
+#font pango: SF Pro Display, FontAwesome 11
+font pango:PT Sans,Sf Pro Display, FontAwesome 10
 
 #for_window [class="^.*"] border pixel 2
-default_border pixel
+default_border normal 1
+default_floating_border pixel 1
 gaps inner 5
 #gaps outer 0
 smart_gaps on
 hide_edge_borders smart
 smart_borders on
 focus_on_window_activation focus
+#focus_follows_mouse no
+
+
+
+
+bindsym $mod+Shift+t border normal 1
+bindsym $mod+t border pixel 1
 
 
 bindsym $mod+x [class="termite" title="vim"] focus
@@ -26,15 +35,15 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
 # start a terminal
-bindsym $mod+Return exec kitty
-bindsym $mod+t		exec gnome-terminal
+bindsym $mod+Return exec termite
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
 
-bindsym $mod+d exec "rofi -show drun -modi drun,window,run -markup -show-icons -sidebar-mode -terminal kitty"
+bindsym $mod+d exec "rofi --no-lazy-grab -show drun -modi window,run,ssh"
+#bindsym $mod+d exec dmenu_run
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -115,25 +124,31 @@ set $ws9  "9: _9"
 set $ws10 "10: _10"
 
 #assign workspace
-assign [class="firefox"]	$ws3
+assign [class="Firefox"]	$ws3
 assign [class="Brave"]		$ws3
 assign [class="vlc"]		$ws4
 assign [class="totem"]		$ws4
 assign [class="clementine"]		$ws4
 assign [class="evince"]		$ws1
 assign [class="code"]		$ws1
+assign [title = "XDM 2020"]		$ws10
 for_window [class="Spotify"] move to workspace $ws7
-for_window [workspace=$ws3] layout tabbed
+#for_window [workspace=$ws3] layout tabbed
 for_window [class="kitty"] title_format "<span font='10'>  </span><span font='10'>%title</span>"
-for_window [class="firefox"] title_format "<span font='10'>  </span><span font='10'>%title</span>"
+for_window [class="termite"] title_format "<span font='10'>  </span><span font='10'>%title</span>"
+for_window [class="Firefox"] title_format "<span font='10'>  </span><span font='10'>%title</span>"
 for_window [class="Spotify"] title_format "<span font='10'>  </span><span font='10'>%title</span>"
-for_window [class="firefox"] border pixel 2
-for_window [class="Spotify"] border pixel 0
+for_window [class="hromium"] border pixel 1
+for_window [class="irefox"] border pixel 1
+for_window [class="potify"] border pixel 1
+for_window [title="About Mozilla Firefox"] floating enable
 
 for_window [title="Network Connections"] floating enable 
+for_window [class="imagewriter"] floating enable 
+for_window [class="java-lang-Thread" title=" "] floating enable 
+for_window [title="Calculator"] floating enable 
 
 #for_window [floating] move position center
-for_window [floating] border pixel 2
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -159,7 +174,7 @@ bindsym $mod+Shift+4 move container to workspace number $ws4
 bindsym $mod+Shift+5 move container to workspace number $ws5
 bindsym $mod+Shift+6 move container to workspace number $ws6
 bindsym $mod+Shift+7 move container to workspace number $ws7
-bindsym $mod+Shift+8 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
@@ -202,33 +217,30 @@ bindsym $mod+r mode "resize"
 #bar {
 #		 status_command i3blocks
 #}
+#
+## Color config
+#
+## Basic color configuration using the Base16 variables for windows and borders.
+## Property Name        Border  BG      Text    Indicator Child Border
+client.background		#222831  
+client.focused			#00adb5 #00adb5 #222831 #f24005 #00adb5
+#client.unfocused		#222831 #222831 #eeeeee #f24005 #222831 
+client.unfocused		#00565a #00565a #eeeeee #f24005 #00565a  
+client.focused_inactive #00565a #00565a #222831 #f24005 #00565a  
+client.urgent			#F24005 #F24005 #222831 #00adb5 #F24005  
+client.placeholder		#cbd1cd #1e1e20 #cbd1cd #f24005 #919893
 
-# Color config
-set $base00 #101010
-set $base01 #202020
-set $base02 #303030
-set $base03 #505050
-set $base04 #b8b8b8
-set $base05 #d8d8d8
-set $base06 #e8e8e8
-set $base07 #f8f8f8
-set $base08 #c82829
-set $base09 #f5871f
-set $base0A #eab700
-set $base0B #1a8a74
-set $base0C #718c00
-set $base0D #4271ae
-set $base0E #89589a
-set $base0F #8e4600
+##colors:                border  backgr. text    indicator
+#client.focused          #007030 #007030 #ffffff #2b2b2b
+#client.focused_inactive #888888 #2b2b2b #ffffff #2b2b2b
+#client.unfocused        #888888 #2b2b2b #ffffff #2b2b2b
+#client.urgent           #900000 #900000 #ffffff #2b2b2b
 
-# Basic color configuration using the Base16 variables for windows and borders.
-# Property Name         Border  BG      Text    Indicator Child Border
-client.focused          $base0B $base0B $base05 $base07 $base0B
-client.focused_inactive $base02 $base02 $base05 $base07 $base02
-client.unfocused        $base01 $base01 $base05 $base07 $base00
-client.urgent           $base08 $base08 $base05 $base07 $base08
-client.placeholder      $base00 $base00 $base05 $base00 $base00
-client.background       $base00
+#gnome settings
+#exec --no-startup-id /usr/lib/gsd-xsettings
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+
 
 
 #screen Brightness
@@ -237,15 +249,16 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 5 # decrease screen brightnes
 
 #volume
 
-#bindsym XF86AudioRaiseVolume exec --no-startup-id pactl -- set-sink-volume 0 +5% #increase sound volume
-#bindsym XF86AudioLowerVolume exec --no-startup-id pactl -- set-sink-volume 0 -5% #decrease sound volume
-#bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+#bindsym XF86AudioRaiseVolume exec --no-startup-id pactl -- set-sink-volume 1 +5% #increase sound volume
+#bindsym XF86AudioLowerVolume exec --no-startup-id pactl -- set-sink-volume 1 -5% #decrease sound volume
+#bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 1 toggle # mute sound
 bindsym XF86AudioLowerVolume exec --no-startup-id pulseaudio-ctl down
 bindsym XF86AudioRaiseVolume exec --no-startup-id pulseaudio-ctl up
 bindsym XF86AudioMute exec --no-startup-id pulseaudio-ctl mute
 bindsym XF86AudioMicMute exec --no-startup-id pulseaudio-ctl mute-input
 
-bindsym Print exec gnome-screenshot
+bindsym Print exec "gnome-screenshot -i"
+#bindsym Print exec "spectacle"
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
@@ -253,32 +266,33 @@ bindsym XF86AudioPrev exec playerctl previous
 
 
 
+
 exec_always --no-startup-id "killall -q compton; compton" 
 #exec_always --no-startup-id "killall -q compton; compton --config ~/.config/compton/save/compton.conf" 
 
-exec_always --no-startup-id "killall -q dunst; dunst &; sleep 0.5; notify-send hello" 
 
-exec --no-startup-id nm-applet --sm-disable
 
-exec_always --no-startup-id $HOME/.config/i3/setwal.sh
+exec --no-startup-id nm-applet
 
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec --no-startup-id nitrogen --restore
 
-#exec --no-startup-id xss-lock -- i3lock --color=4c7899 -n --ignore-empty-password --show-failed-attempts --nofork -i ~/Pictures/Wallpapers/arch.png
+
+#exec_always --no-startup-id xss-lock -- i3lock --color=4c7899 -n --ignore-empty-password --show-failed-attempts --nofork -i ~/Pictures/wall/arch.png
 #exec_always --no-startup-id xss-lock -- ~/.config/i3/lock.sh
-exec_always --no-startup-id xss-lock -- gllock
+exec --no-startup-id "xss-lock -- light-locker-command -l"
+exec --no-startup-id light-locker
 
 #exec_always "~/.config/i3/autolock"
-exec_always --no-startup-id "numlockx"
-exec --no-startup-id "killall -q conky; conky -c ~/.config/i3/conkyrc"
-exec gnome-settings-daemon
-exec xfce4-power-manager
+exec "sleep 5; xfce4-power-manager"
 
 
+exec_always --no-startup-id "killall -q conky; conky -c ~/.config/i3/conkyrc; conky -c ~/.config/i3/conkyrc_todo"
+#exec_always --no-startup-id xss-lock -- gllock
+exec_always --no-startup-id "killall -q dunst; dunst &; sleep 0.5; notify-send hello" 
+exec --no-startup-id "telegram-desktop -startintray"
+exec --no-startup-id "numlockx"
 
-
-
-
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 #
 #
 ## Plasma Integration

@@ -1,7 +1,8 @@
 [options]
 
 #font = DejaVu Sans Mono for Powerline 12
-font = Meslo LG S for Powerline 12
+#font = Meslo LG S for Powerline 12
+font = Fira Code 12
 #font = Inconsolata-dz for Powerline 12
 scrollback_lines = 10000
 # "system", "on" or "off"
@@ -15,8 +16,8 @@ cursor_shape = block
 # special
 foreground      = #ffffff
 foreground_bold = #ffffff
-#background      = #161616
-background      = rgba(16,16,16,0.9)
+background      = #161616
+#background      = rgba(16,16,16,0.95)
 
 # black
 color0	 =       #1f1f1f
