@@ -141,9 +141,12 @@ nmap <leader>bq :bp <BAR> bd #<CR>
 nmap <C-h> :set hlsearch
 
 "NERDTree settings
-nnoremap <silent> <Leader>f :NERDTreeToggle<Enter>
-nnoremap <silent> <Leader>v :NERDTreeFind<CR>
+"nnoremap <Leader>f :NERDTreeToggle<CR>
+"nnoremap <silent> <Leader>v :NERDTreeFind<CR>
 let NERDTreeQuitOnOpen = 1
+nmap <F6> : NERDTreeToggle<CR>
+nnoremap <Leader>v :NERDTreeFind<CR>
+
 
 " Better search
 set hlsearch
@@ -171,7 +174,7 @@ map <F9> :<C-U>!./%:r<CR>
 
 "enable folding with space 
 nnoremap <space>	za
-
+"---------------------------------------------------
 "Coc conf
 " TextEdit might fail if hidden is not set.
 set hidden
@@ -201,6 +204,7 @@ set signcolumn=yes
 "      \ pumvisible() ? "\<C-n>" :
 "      \ <SID>check_back_space() ? "\<TAB>" :
 "      \ coc#refresh()
+"older
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<tab>"
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
@@ -210,8 +214,13 @@ function! s:check_back_space() abort
 endfunction
 
 " Use <c-space> to trigger completion.
-"inoremap <silent><expr> <c-space> coc#refresh()
-inoremap <silent><expr> <NUL> coc#refresh()
+if has('nvim')
+  inoremap <silent><expr> <c-space> coc#refresh()
+else
+  inoremap <silent><expr> <c-@> coc#refresh()
+endif
+"older
+"inoremap <silent><expr> <NUL> coc#refresh()
 
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
 " position. Coc only does snippet and additional edit on confirm.
@@ -276,12 +285,6 @@ xmap if <Plug>(coc-funcobj-i)
 xmap af <Plug>(coc-funcobj-a)
 omap if <Plug>(coc-funcobj-i)
 omap af <Plug>(coc-funcobj-a)
-
-" Use <TAB> for selections ranges.
-" NOTE: Requires 'textDocument/selectionRange' support from the language server.
-" coc-tsserver, coc-python are the examples of servers that support it.
-nmap <silent> <TAB> <Plug>(coc-range-select)
-xmap <silent> <TAB> <Plug>(coc-range-select)
 
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
