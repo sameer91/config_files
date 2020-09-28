@@ -5,4 +5,4 @@ setting up server saves up a ton of init.el load time by loading init.el once at
 * You can now create a new window/client/frame for emacs server
   ```emacsclient -c foo.cpp```
 * Create alias
-  ```alias 'eclient'='emacsclient -c```
+  ```alias eclient='emacsclient -c'```
