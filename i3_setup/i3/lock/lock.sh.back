@@ -1,0 +1,18 @@
+#!/bin/bash
+
+lock=$HOME'/.config/i3/lock/lock2.png'
+img=$(mktemp /tmp/XXXXXXXXXXXX.png)
+
+import -window root $img
+
+##pixelate
+mogrify $img -scale 10% -scale 1000% $img
+##Blur image
+#convert $img -filter Gaussian -blur 0x8 $img
+
+convert $img $lock -gravity center -composite $img
+
+i3lock -p win -f -e -i $img
+rm $img
+
+sleep 30; pgrep i3lock && xset dpms force off

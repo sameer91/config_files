@@ -1,19 +1,21 @@
 ;;; init.el --- emacs init.el
+;;; Commentary:
 ;;; Code:
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(column-number-mode t)
+ '(custom-safe-themes
+   '("84d2f9eeb3f82d619ca4bfffe5f157282f4779732f48a5ac1484d94d5ff5b279" default))
+ '(global-display-line-numbers-mode t)
+ '(highlight-indent-guides-method 'character)
  '(package-selected-packages
-   '(zenburn-theme which-key use-package smartparens smart-mode-line-powerline-theme neotree monokai-theme lsp-ui helm-projectile flycheck doom-themes diminish company ccls avy)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:family "Meslo LG S for Powerline" :foundry "PfEd" :slant normal :weight normal :height 113 :width normal)))))
+   '(highlight-indent-guides yasnippet-snippets company-lsp zenburn-theme which-key use-package smartparens smart-mode-line-powerline-theme neotree monokai-theme lsp-ui helm-projectile flycheck doom-themes diminish company ccls avy))
+ '(show-paren-mode t)
+ '(size-indication-mode t)
+ '(yas-global-mode t))
 
 
 ;;--------------------------------------
@@ -28,8 +30,7 @@
 (set-keyboard-coding-system 'utf-8)
 ;;make all commands of package module present
 
-;;; Commentary:
-;; 
+
 
 (require 'package)
 
@@ -54,9 +55,10 @@
 (global-hl-line-mode +1)
 (line-number-mode +1)
 (global-display-line-numbers-mode 1)
-(column-number-mode
- t)
+(column-number-mode t)
 (size-indication-mode t)
+
+
 ;;-----smart mode line
 (use-package smart-mode-line-powerline-theme
   :ensure t)
@@ -71,15 +73,12 @@
 
 (setf custom-safe-themes t)
 ;;theme setup
-;;(use-package doom-themes
-;;  :ensure t
-;;  :config
-;;  (load-theme 'doom-dark+ t)
-;;  (doom-themes-visual-bell-config))
-
-(use-package monokai-theme
+(use-package doom-themes
   :ensure t
-  :config(load-theme 'monokai t))
+  :config
+  (load-theme 'doom-monokai-classic t)
+  (doom-themes-visual-bell-config))
+
 
 ;;---------
 ;;backup
@@ -94,7 +93,8 @@
 (global-auto-revert-mode t)
 
 (setq-default tab-width 4
-          indent-tabs-mode nil)
+              indent-tabs-mode nil)
+
 ;;clean whitespaces before saving
 (add-hook 'before-save-hook 'whitespace-cleanup)
 
@@ -109,6 +109,10 @@
     (require 'smartparens-config)
     (smartparens-global-mode 1)
     (show-paren-mode t)))
+
+(add-hook 'prog-mode-hook 'turn-on-smartparens-strict-mode)
+(add-hook 'markdown-mode-hook 'turn-on-smartparens-strict-mode)
+
 
 (use-package which-key
   :ensure t
@@ -140,6 +144,7 @@
 
 (use-package projectile
   :ensure t
+  :disabled t
   :diminish projectile-mode
   :bind
   (("C-c p f" . helm-projectile-find-file)
@@ -172,16 +177,27 @@
 
 (use-package helm-projectile
   :ensure t
+  :disabled t
   :config
   (helm-projectile-on))
+
+(use-package yasnippet-snippets
+  :ensure t)
+
+(use-package yasnippet
+  :ensure t
+  :config
+  (yas-global-mode 1))
+
+
 ;;----lsp----
 
-(use-package lsp-mode
-  :commands lsp :ensure t)
+(use-package lsp-mode  :commands lsp :ensure t)
 (use-package lsp-ui :commands lsp-ui-mode :ensure t)
-(use-package company-lsp :commands company-lsp)
-
-(setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
+(use-package company-lsp
+  :commands company-lsp
+  :ensure t
+  :config (push 'company-lsp company-backends))
 
 (use-package ccls
   :ensure t
@@ -192,11 +208,40 @@
   :hook ((c-mode c++-mode objc-mode) .
          (lambda () (require 'ccls) (lsp))))
 
-(use-package neotree
-  :disabled
-  :defer t
-  :config (global-set-key [f8] 'neotree-toggle)
-  )
+(use-package highlight-indent-guides
+  :ensure t
+  :config
+  (add-hook 'prog-mode-hook 'highlight-indent-guides-mode))
+
+
+
+
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((t (:family "MesloLGS NF" :foundry "PfEd" :slant normal :weight normal :height 120 :width normal)))))
+
+
+
+;;set cursor color
+(set-cursor-color "white")
+
+
+(require 'frame)
+(defun set-cursor-hook (frame)
+(modify-frame-parameters
+  frame (list (cons 'cursor-color "white"))))
+
+(add-hook 'after-make-frame-functions 'set-cursor-hook)
+
+
+
+;;(require 'server)
+;;(if (not (server-running-p)) (server-start))
+
+
 (provide 'init)
 
 ;;; init.el ends here
