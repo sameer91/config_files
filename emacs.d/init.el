@@ -340,12 +340,19 @@
 (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
 
 ;;THEMES
-;;smart-mode-line
+
+;;powerline
+;; (straight-use-package 'spaceline)
+;; (straight-use-package 'powerline)
+
+;; (require 'spaceline-config)
+;; (spaceline-spacemacs-theme)
+
 
 (straight-use-package 'zerodark-theme)
-;;(load-theme 'zerodark t)
+(load-theme 'zerodark t)
 ;; Optionally setup the modeline
-;;(zerodark-setup-modeline-format)
+(zerodark-setup-modeline-format)
 
 
 (provide 'init)
