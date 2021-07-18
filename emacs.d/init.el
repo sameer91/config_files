@@ -42,6 +42,8 @@
  '(pdf-view-midnight-colors '("#b2b2b2" . "#292b2e"))
  '(size-indication-mode t)
  '(sml/theme nil)
+ '(switch-window-input-style 'minibuffer)
+ '(switch-window-shortcut-style 'qwerty)
  '(tool-bar-mode nil)
  '(yascroll:delay-to-hide nil))
 (custom-set-faces
@@ -262,10 +264,24 @@
 (straight-use-package 'yascroll)
 (global-yascroll-bar-mode t)
 
+;; windows switch
+(straight-use-package 'switch-window)
+(setq switch-window-input-style 'minibuffer)
+(setq switch-window-increase 4)
+(setq switch-window-threshold 2)
+(setq switch-window-shor2tcut-style 'qwerty)
+(setq switch-window-qwerty-shortcuts
+	  '("a" "s" "d" "f" "j" "k" "l"))
+(global-set-key (kbd "C-x o") 'switch-window)
+
 ;;------------------- EDITING ---------------------------------
 ;; EXPAND-REGION
 (straight-use-package 'expand-region)
 (global-set-key (kbd "M-m") 'er/expand-region)
+
+;;avy
+(straight-use-package 'avy)
+(global-set-key (kbd "M-s") 'avy-goto-charq)
 
 ;;CRUX
 (straight-use-package 'crux)
@@ -348,7 +364,9 @@
 ;; (require 'spaceline-config)
 ;; (spaceline-spacemacs-theme)
 
+;;smart-mode-line
 
+(straight-use-package 'smart-mode-line)
 (straight-use-package 'zerodark-theme)
 (load-theme 'zerodark t)
 ;; Optionally setup the modeline
