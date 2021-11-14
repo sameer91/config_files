@@ -11,15 +11,35 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-faces-vector
+   [default bold shadow italic underline success warning error])
+ '(awesome-tray-mode-line-active-color "#2fafff")
+ '(awesome-tray-mode-line-inactive-color "#323232")
  '(blink-cursor-mode nil)
  '(column-number-mode t)
+ '(company-quickhelp-color-background "#4F4F4F")
+ '(company-quickhelp-color-foreground "#DCDCCC")
+ '(compilation-message-face 'default)
  '(custom-enabled-themes '(wombat))
  '(custom-safe-themes
-   '("ea5822c1b2fb8bb6194a7ee61af3fe2cc7e2c7bab272cbb498a0234984e1b2d9" "e7f49a69d5fed5597d37b0711ca195fd632b9b08993194cb2f1d36dd1f7b20a0" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default))
+   '("0568a5426239e65aab5e7c48fa1abde81130a87ddf7f942613bf5e13bf79686b" "d6da24347c813d1635a217d396cf1e3be26484fd4d05be153f3bd2b293d2a0b5" "e45683c6e2d4ce67624beb9475ac70dd1c54458b8e2ed156539cabfa1ba775e1" "3860a842e0bf585df9e5785e06d600a86e8b605e5cc0b74320dfe667bcbe816c" "80d5a22931c15756b00fb258b80c93b8bc5096bb698dadfb6155ef3550e1c8fb" "ea5822c1b2fb8bb6194a7ee61af3fe2cc7e2c7bab272cbb498a0234984e1b2d9" "e7f49a69d5fed5597d37b0711ca195fd632b9b08993194cb2f1d36dd1f7b20a0" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default))
  '(diff-hl-margin-mode t)
+ '(display-battery-mode t)
+ '(display-time-mode t)
+ '(doom-modeline-github t)
+ '(doom-modeline-height 22)
+ '(doom-modeline-mode t)
+ '(exwm-floating-border-color "#646464")
+ '(fci-rule-color "#383838")
+ '(flymake-error-bitmap '(flymake-double-exclamation-mark modus-themes-fringe-red))
+ '(flymake-note-bitmap '(exclamation-mark modus-themes-fringe-cyan))
+ '(flymake-warning-bitmap '(exclamation-mark modus-themes-fringe-yellow))
  '(global-diff-hl-mode t)
  '(global-display-line-numbers-mode t)
  '(helm-M-x-reverse-history t)
+ '(helm-completion-style 'helm)
+ '(highlight-changes-colors '("#FD5FF0" "#AE81FF"))
+ '(highlight-tail-colors '(("#2f4a00" . 0) ("#00415e" . 20)))
  '(hl-todo-keyword-faces
    '(("TODO" . "#dc752f")
 	 ("NEXT" . "#dc752f")
@@ -36,15 +56,52 @@
 	 ("FIXME" . "#dc752f")
 	 ("XXX+" . "#dc752f")
 	 ("\\?\\?\\?+" . "#dc752f")))
+ '(ibuffer-deletion-face 'modus-themes-mark-del)
+ '(ibuffer-filter-group-name-face 'modus-themes-pseudo-header)
+ '(ibuffer-marked-face 'modus-themes-mark-sel)
+ '(ibuffer-title-face 'default)
  '(ido-everywhere t)
  '(ido-ubiquitous-mode t)
  '(ido-vertical-mode t)
+ '(magit-diff-use-overlays nil)
+ '(nrepl-message-colors
+   '("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3"))
+ '(org-src-block-faces 'nil)
  '(pdf-view-midnight-colors '("#b2b2b2" . "#292b2e"))
+ '(pos-tip-background-color "#FFFACE")
+ '(pos-tip-foreground-color "#272822")
  '(size-indication-mode t)
- '(sml/theme nil)
- '(switch-window-input-style 'minibuffer)
+ '(switch-window-input-style 'minibuffer t)
  '(switch-window-shortcut-style 'qwerty)
  '(tool-bar-mode nil)
+ '(vc-annotate-background nil)
+ '(vc-annotate-background-mode nil)
+ '(vc-annotate-color-map
+   '((20 . "#F92672")
+	 (40 . "#CF4F1F")
+	 (60 . "#C26C0F")
+	 (80 . "#E6DB74")
+	 (100 . "#AB8C00")
+	 (120 . "#A18F00")
+	 (140 . "#989200")
+	 (160 . "#8E9500")
+	 (180 . "#A6E22E")
+	 (200 . "#729A1E")
+	 (220 . "#609C3C")
+	 (240 . "#4E9D5B")
+	 (260 . "#3C9F79")
+	 (280 . "#A1EFE4")
+	 (300 . "#299BA6")
+	 (320 . "#2896B5")
+	 (340 . "#2790C3")
+	 (360 . "#66D9EF")))
+ '(vc-annotate-very-old-color nil)
+ '(weechat-color-list
+   '(unspecified "#272822" "#3C3D37" "#F70057" "#F92672" "#86C30D" "#A6E22E" "#BEB244" "#E6DB74" "#40CAE4" "#66D9EF" "#FB35EA" "#FD5FF0" "#74DBCD" "#A1EFE4" "#F8F8F2" "#F8F8F0"))
+ '(xterm-color-names
+   ["black" "#ff8059" "#44bc44" "#d0bc00" "#2fafff" "#feacd0" "#00d3d0" "gray65"])
+ '(xterm-color-names-bright
+   ["gray35" "#ef8b50" "#70b900" "#c0c530" "#79a8ff" "#f78fe7" "#4ae2f0" "white"])
  '(yascroll:delay-to-hide nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -79,6 +136,7 @@
 (global-display-line-numbers-mode 1)
 (column-number-mode t)
 (size-indication-mode t)
+(display-battery-mode t)
 
 (setq inhibit-startup-screen t)
 
@@ -364,13 +422,18 @@
 ;; (require 'spaceline-config)
 ;; (spaceline-spacemacs-theme)
 
-;;smart-mode-line
-
-(straight-use-package 'smart-mode-line)
-(straight-use-package 'zerodark-theme)
-(load-theme 'zerodark t)
+;;(straight-use-package 'zerodark-theme)
+;;(load-theme 'zerodark t)
 ;; Optionally setup the modeline
 (zerodark-setup-modeline-format)
+
+;;(straight-use-package 'zenburn-theme)
+(straight-use-package 'monokai-theme)
+;;(straight-use-package 'grandshell-theme)
+;;(straight-use-package 'modus-themes)
+
+;;(modus-themes-load-themes)
+;;(modus-themes-load-vivendi)
 
 
 (provide 'init)
