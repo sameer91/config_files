@@ -13,6 +13,8 @@
  ;; If there is more than one, they won't work right.
  '(ansi-color-faces-vector
    [default bold shadow italic underline success warning error])
+ '(ansi-color-names-vector
+   ["#383e3f" "#cd5c60" "#39855f" "#b87e3c" "#2683b5" "#845A84" "#48a9a9" "#C9C2BD"])
  '(awesome-tray-mode-line-active-color "#2fafff")
  '(awesome-tray-mode-line-inactive-color "#323232")
  '(blink-cursor-mode nil)
@@ -20,9 +22,8 @@
  '(company-quickhelp-color-background "#4F4F4F")
  '(company-quickhelp-color-foreground "#DCDCCC")
  '(compilation-message-face 'default)
- '(custom-enabled-themes '(wombat))
  '(custom-safe-themes
-   '("0568a5426239e65aab5e7c48fa1abde81130a87ddf7f942613bf5e13bf79686b" "d6da24347c813d1635a217d396cf1e3be26484fd4d05be153f3bd2b293d2a0b5" "e45683c6e2d4ce67624beb9475ac70dd1c54458b8e2ed156539cabfa1ba775e1" "3860a842e0bf585df9e5785e06d600a86e8b605e5cc0b74320dfe667bcbe816c" "80d5a22931c15756b00fb258b80c93b8bc5096bb698dadfb6155ef3550e1c8fb" "ea5822c1b2fb8bb6194a7ee61af3fe2cc7e2c7bab272cbb498a0234984e1b2d9" "e7f49a69d5fed5597d37b0711ca195fd632b9b08993194cb2f1d36dd1f7b20a0" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" default))
+   '("3c7a784b90f7abebb213869a21e84da462c26a1fda7e5bd0ffebf6ba12dbd041"))
  '(diff-hl-margin-mode t)
  '(display-battery-mode t)
  '(display-time-mode t)
@@ -108,7 +109,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "IBM Plex Mono" :foundry "IBM " :slant normal :weight normal :height 120 :width normal)))))
+ '(default ((t (:family "JetBrains Mono" :foundry "JB" :slant normal :weight normal :height 120 :width normal)))))
 
 
 ;;-------------------------------------------------
@@ -415,26 +416,11 @@
 
 ;;THEMES
 
-;;powerline
-;; (straight-use-package 'spaceline)
-;; (straight-use-package 'powerline)
+(straight-use-package 'zenburn-theme)
+(straight-use-package 'kaolin-themes)
 
-;; (require 'spaceline-config)
-;; (spaceline-spacemacs-theme)
 
-;;(straight-use-package 'zerodark-theme)
-;;(load-theme 'zerodark t)
-;; Optionally setup the modeline
-(zerodark-setup-modeline-format)
-
-;;(straight-use-package 'zenburn-theme)
-(straight-use-package 'monokai-theme)
-;;(straight-use-package 'grandshell-theme)
-;;(straight-use-package 'modus-themes)
-
-;;(modus-themes-load-themes)
-;;(modus-themes-load-vivendi)
-
+(load-theme 'kaolin-aurora)
 
 (provide 'init)
 
