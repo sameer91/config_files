@@ -23,7 +23,7 @@
  '(company-quickhelp-color-foreground "#DCDCCC")
  '(compilation-message-face 'default)
  '(custom-safe-themes
-   '("3c7a784b90f7abebb213869a21e84da462c26a1fda7e5bd0ffebf6ba12dbd041"))
+   '("ea5822c1b2fb8bb6194a7ee61af3fe2cc7e2c7bab272cbb498a0234984e1b2d9" "bb22831b15dfe3f231d4df29c09a56f73d604abe4e6c018f690d15132dd52069" "3c7a784b90f7abebb213869a21e84da462c26a1fda7e5bd0ffebf6ba12dbd041"))
  '(diff-hl-margin-mode t)
  '(display-battery-mode t)
  '(display-time-mode t)
@@ -43,20 +43,20 @@
  '(highlight-tail-colors '(("#2f4a00" . 0) ("#00415e" . 20)))
  '(hl-todo-keyword-faces
    '(("TODO" . "#dc752f")
-	 ("NEXT" . "#dc752f")
-	 ("THEM" . "#2d9574")
-	 ("PROG" . "#4f97d7")
-	 ("OKAY" . "#4f97d7")
-	 ("DONT" . "#f2241f")
-	 ("FAIL" . "#f2241f")
-	 ("DONE" . "#86dc2f")
-	 ("NOTE" . "#b1951d")
-	 ("KLUDGE" . "#b1951d")
-	 ("HACK" . "#b1951d")
-	 ("TEMP" . "#b1951d")
-	 ("FIXME" . "#dc752f")
-	 ("XXX+" . "#dc752f")
-	 ("\\?\\?\\?+" . "#dc752f")))
+     ("NEXT" . "#dc752f")
+     ("THEM" . "#2d9574")
+     ("PROG" . "#4f97d7")
+     ("OKAY" . "#4f97d7")
+     ("DONT" . "#f2241f")
+     ("FAIL" . "#f2241f")
+     ("DONE" . "#86dc2f")
+     ("NOTE" . "#b1951d")
+     ("KLUDGE" . "#b1951d")
+     ("HACK" . "#b1951d")
+     ("TEMP" . "#b1951d")
+     ("FIXME" . "#dc752f")
+     ("XXX+" . "#dc752f")
+     ("\\?\\?\\?+" . "#dc752f")))
  '(ibuffer-deletion-face 'modus-themes-mark-del)
  '(ibuffer-filter-group-name-face 'modus-themes-pseudo-header)
  '(ibuffer-marked-face 'modus-themes-mark-sel)
@@ -79,23 +79,23 @@
  '(vc-annotate-background-mode nil)
  '(vc-annotate-color-map
    '((20 . "#F92672")
-	 (40 . "#CF4F1F")
-	 (60 . "#C26C0F")
-	 (80 . "#E6DB74")
-	 (100 . "#AB8C00")
-	 (120 . "#A18F00")
-	 (140 . "#989200")
-	 (160 . "#8E9500")
-	 (180 . "#A6E22E")
-	 (200 . "#729A1E")
-	 (220 . "#609C3C")
-	 (240 . "#4E9D5B")
-	 (260 . "#3C9F79")
-	 (280 . "#A1EFE4")
-	 (300 . "#299BA6")
-	 (320 . "#2896B5")
-	 (340 . "#2790C3")
-	 (360 . "#66D9EF")))
+     (40 . "#CF4F1F")
+     (60 . "#C26C0F")
+     (80 . "#E6DB74")
+     (100 . "#AB8C00")
+     (120 . "#A18F00")
+     (140 . "#989200")
+     (160 . "#8E9500")
+     (180 . "#A6E22E")
+     (200 . "#729A1E")
+     (220 . "#609C3C")
+     (240 . "#4E9D5B")
+     (260 . "#3C9F79")
+     (280 . "#A1EFE4")
+     (300 . "#299BA6")
+     (320 . "#2896B5")
+     (340 . "#2790C3")
+     (360 . "#66D9EF")))
  '(vc-annotate-very-old-color nil)
  '(weechat-color-list
    '(unspecified "#272822" "#3C3D37" "#F70057" "#F92672" "#86C30D" "#A6E22E" "#BEB244" "#E6DB74" "#40CAE4" "#66D9EF" "#FB35EA" "#FD5FF0" "#74DBCD" "#A1EFE4" "#F8F8F2" "#F8F8F0"))
@@ -109,7 +109,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "JetBrains Mono" :foundry "JB" :slant normal :weight normal :height 120 :width normal)))))
+ '(default ((t (:family "FiraCode Nerd Font" :foundry "CTDB" :slant normal :weight normal :height 113 :width normal)))))
 
 
 ;;-------------------------------------------------
@@ -143,14 +143,16 @@
 
 ;;show smaller paths
 (setq frame-title-format
-	  '((:eval (if (buffer-file-name)
-				   (abbreviate-file-name (buffer-file-name))
-				 "%b"))))
+      '((:eval (if (buffer-file-name)
+                   (abbreviate-file-name (buffer-file-name))
+                 "%b"))))
 
 ;;scrolling
 (setq scroll-margin 5
-	  scroll-conservatively 100
-	  scroll-preserve-screen-position 1)
+      scroll-conservatively 100
+      scroll-preserve-screen-position 1)
+;; comment
+(global-set-key (kbd "C-/") 'comment-region)
 
 ;;prettify symbol
 (global-prettify-symbols-mode t)
@@ -158,9 +160,9 @@
 ;;---------
 ;;backup
 (setq backup-directory-alist
-	  `((".*" . ,temporary-file-directory)))
+      `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms
-	  `((".*" ,temporary-file-directory t)))
+      `((".*" ,temporary-file-directory t)))
 
 ;; create window and follow
 (defun split-and-follow-horizontally ()
@@ -190,11 +192,11 @@
 (setq use-package-always-defer t)
 
 ;;tab width
-(setq-default tab-width 4)
-(setq-default standard-indent 4)
+(setq-default tab-width 2)
+(setq-default standard-indent 2)
 (setq c-basic-offset tab-width)
 (setq-default electric-indent-inhibit t)
-(setq-default indent-tabs-mode t)
+(setq-default indent-tabs-mode nil)
 (setq backward-delete-char-untabify-method 'nil)
 
 ;;clean whitespaces before saving
@@ -214,15 +216,15 @@
 
 (defvar bootstrap-version)
 (let ((bootstrap-file
-	   (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-	  (bootstrap-version 5))
+       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+      (bootstrap-version 5))
   (unless (file-exists-p bootstrap-file)
-	(with-current-buffer
-		(url-retrieve-synchronously
-		 "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
-		 'silent 'inhibit-cookies)
-	  (goto-char (point-max))
-	  (eval-print-last-sexp)))
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
 
@@ -250,6 +252,7 @@
 (require 'helm-config)
 
 (global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "C-x C-b") 'helm-buffers-list)
 ;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
 ;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
 ;; cannot change `helm-command-prefix-key' once `helm-config' is loaded.
@@ -264,11 +267,11 @@
   (setq helm-google-suggest-use-curl-p t))
 
 (setq helm-split-window-in-side-p           t ; open helm buffer inside current window, not occupy whole other window
-	  helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
-	  helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
-	  helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
-	  helm-ff-file-name-history-use-recentf t
-	  helm-echo-input-in-header-line t)
+      helm-move-to-line-cycle-in-source     t ; move to end or beginning of source when reaching top or bottom of source.
+      helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
+      helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
+      helm-ff-file-name-history-use-recentf t
+      helm-echo-input-in-header-line t)
 
 (setq helm-autoresize-max-height 0)
 (setq helm-autoresize-min-height 20)
@@ -330,7 +333,7 @@
 (setq switch-window-threshold 2)
 (setq switch-window-shor2tcut-style 'qwerty)
 (setq switch-window-qwerty-shortcuts
-	  '("a" "s" "d" "f" "j" "k" "l"))
+      '("a" "s" "d" "f" "j" "k" "l"))
 (global-set-key (kbd "C-x o") 'switch-window)
 
 ;;------------------- EDITING ---------------------------------
@@ -388,13 +391,21 @@
 
 ;; code format
 (straight-use-package 'format-all)
+(straight-use-package 'clang-format)
+(require 'clang-format)
+(setq clang-format-style "file")
+(setq clang-format-fallback-style "Google")
+(with-eval-after-load 'cc-mode
+  (fset 'c-indent-region 'clang-format-region)
+  (define-key c-mode-base-map (kbd "<C-tab>") 'company-complete)
+  (define-key c-mode-base-map (kbd "C-M-\\") 'clang-format-region)
+  (define-key c-mode-base-map (kbd "C-i") 'clang-format))
 
 ;; Completion
-
 (straight-use-package 'company)
 (add-hook 'after-init-hook 'global-company-mode)
 (setq company-idle-delay 0.0
-	  company-minimum-prefix-length 1)
+      company-minimum-prefix-length 1)
 
 (straight-use-package 'company-quickhelp)
 (company-quickhelp-mode)
@@ -403,24 +414,30 @@
 ;;vterm
 (straight-use-package 'vterm)
 
+;; cmake-mode
+(straight-use-package 'cmake-mode)
+(require 'cmake-mode)
+
 
 ;; version control
 ;;magit
 (straight-use-package 'magit)
 (global-set-key (kbd "C-M-g") 'magit-status)
-;;diff-hl
-(straight-use-package 'diff-hl)
-(global-diff-hl-mode)
-(add-hook 'magit-pre-refresh-hook 'diff-hl-magit-pre-refresh)
-(add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
-
 ;;THEMES
 
-(straight-use-package 'zenburn-theme)
+;; (straight-use-package 'zenburn-theme)
 (straight-use-package 'kaolin-themes)
 
 
 (load-theme 'kaolin-aurora)
+
+;; diff-hl
+(straight-use-package 'diff-hl)
+(global-diff-hl-mode 1)
+(add-hook 'magit-pre-refresh-hook 'diff-hl-magit-pre-refresh)
+(add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
+(diff-hl-margin-mode 1)
+(diff-hl-flydiff-mode 1)
 
 (provide 'init)
 
