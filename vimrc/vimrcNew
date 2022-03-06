@@ -1,0 +1,43 @@
+" REMAPE KEYS
+inoremap jk <ESC>
+vnoremap jk <ESC>
+let mapleader = "'"
+
+" Nice To Haves
+syntax on
+set number
+set noswapfile
+set hlsearch
+set ignorecase
+set incsearch
+
+set foldmethod=indent
+set foldlevel=99
+set backspace=indent,eol,start  "Allow backspace in insert mode
+set showcmd                     "Show incomplete cmds down the bottom
+set showmode                    "Show current mode down the bottom
+set autoread                    "Reload files changed outside vim
+"set mouse=a
+set encoding=utf-8
+
+set autoindent
+set smartindent
+set smarttab
+set shiftwidth=2
+set softtabstop=2
+set tabstop=2
+
+" NOTES
+" Do: d(delete), c/C(change), y(yank), v(visual/select)
+" Mod: i(inside), a(around), <num>, t(search till), f(find), /(find)
+" On: w(word), s or )(sentence), p or }(para), t(tag), b(block)
+" Search Navigate: Search: n - N, find/till (; and ,)
+" Naviation: 0, $, ^
+" Movement: (w, e, W), (b, B), (H, M, L), (gg, G) (^E, ^Y, ^U, ^D, ^F, ^B)
+" Jumping: Ctrl-i(prev), Ctrl-o(back)
+" Editor Options: i/I(inset), a/A(append), o/O(newline), r/R(replace), s/S(sub)
+" 		  ~(cange case)
+" Delete: x/X(char), d/D(delete), J(join)
+" UndoRedo: u(undo), Ctrl-r(redo)
+" Repeate: . repeates last command, & repeate last Ex command
+
