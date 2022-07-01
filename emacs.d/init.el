@@ -11,105 +11,20 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ansi-color-faces-vector
-   [default bold shadow italic underline success warning error])
- '(ansi-color-names-vector
-   ["#383e3f" "#cd5c60" "#39855f" "#b87e3c" "#2683b5" "#845A84" "#48a9a9" "#C9C2BD"])
- '(awesome-tray-mode-line-active-color "#2fafff")
- '(awesome-tray-mode-line-inactive-color "#323232")
- '(blink-cursor-mode nil)
  '(column-number-mode t)
- '(company-quickhelp-color-background "#4F4F4F")
- '(company-quickhelp-color-foreground "#DCDCCC")
- '(compilation-message-face 'default)
  '(custom-safe-themes
-   '("ea5822c1b2fb8bb6194a7ee61af3fe2cc7e2c7bab272cbb498a0234984e1b2d9" "bb22831b15dfe3f231d4df29c09a56f73d604abe4e6c018f690d15132dd52069" "3c7a784b90f7abebb213869a21e84da462c26a1fda7e5bd0ffebf6ba12dbd041"))
- '(diff-hl-margin-mode t)
+   '("de1bf2ed5e8ff97ce2d8f277f1d022a8a9141d5c7afe5248c5df077f30168a1b" "d9a28a009cda74d1d53b1fbd050f31af7a1a105aa2d53738e9aa2515908cac4c" "d516f1e3e5504c26b1123caa311476dc66d26d379539d12f9f4ed51f10629df3" "37c8c2817010e59734fe1f9302a7e6a2b5e8cc648cf6a6cc8b85f3bf17fececf" default))
  '(display-battery-mode t)
- '(display-time-mode t)
- '(doom-modeline-github t)
- '(doom-modeline-height 22)
- '(doom-modeline-mode t)
- '(exwm-floating-border-color "#646464")
- '(fci-rule-color "#383838")
- '(flymake-error-bitmap '(flymake-double-exclamation-mark modus-themes-fringe-red))
- '(flymake-note-bitmap '(exclamation-mark modus-themes-fringe-cyan))
- '(flymake-warning-bitmap '(exclamation-mark modus-themes-fringe-yellow))
- '(global-diff-hl-mode t)
  '(global-display-line-numbers-mode t)
- '(helm-M-x-reverse-history t)
- '(helm-completion-style 'helm)
- '(highlight-changes-colors '("#FD5FF0" "#AE81FF"))
- '(highlight-tail-colors '(("#2f4a00" . 0) ("#00415e" . 20)))
- '(hl-todo-keyword-faces
-   '(("TODO" . "#dc752f")
-     ("NEXT" . "#dc752f")
-     ("THEM" . "#2d9574")
-     ("PROG" . "#4f97d7")
-     ("OKAY" . "#4f97d7")
-     ("DONT" . "#f2241f")
-     ("FAIL" . "#f2241f")
-     ("DONE" . "#86dc2f")
-     ("NOTE" . "#b1951d")
-     ("KLUDGE" . "#b1951d")
-     ("HACK" . "#b1951d")
-     ("TEMP" . "#b1951d")
-     ("FIXME" . "#dc752f")
-     ("XXX+" . "#dc752f")
-     ("\\?\\?\\?+" . "#dc752f")))
- '(ibuffer-deletion-face 'modus-themes-mark-del)
- '(ibuffer-filter-group-name-face 'modus-themes-pseudo-header)
- '(ibuffer-marked-face 'modus-themes-mark-sel)
- '(ibuffer-title-face 'default)
- '(ido-everywhere t)
- '(ido-ubiquitous-mode t)
- '(ido-vertical-mode t)
- '(magit-diff-use-overlays nil)
- '(nrepl-message-colors
-   '("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3"))
- '(org-src-block-faces 'nil)
- '(pdf-view-midnight-colors '("#b2b2b2" . "#292b2e"))
- '(pos-tip-background-color "#FFFACE")
- '(pos-tip-foreground-color "#272822")
  '(size-indication-mode t)
- '(switch-window-input-style 'minibuffer t)
- '(switch-window-shortcut-style 'qwerty)
- '(tool-bar-mode nil)
- '(vc-annotate-background nil)
- '(vc-annotate-background-mode nil)
- '(vc-annotate-color-map
-   '((20 . "#F92672")
-     (40 . "#CF4F1F")
-     (60 . "#C26C0F")
-     (80 . "#E6DB74")
-     (100 . "#AB8C00")
-     (120 . "#A18F00")
-     (140 . "#989200")
-     (160 . "#8E9500")
-     (180 . "#A6E22E")
-     (200 . "#729A1E")
-     (220 . "#609C3C")
-     (240 . "#4E9D5B")
-     (260 . "#3C9F79")
-     (280 . "#A1EFE4")
-     (300 . "#299BA6")
-     (320 . "#2896B5")
-     (340 . "#2790C3")
-     (360 . "#66D9EF")))
- '(vc-annotate-very-old-color nil)
- '(weechat-color-list
-   '(unspecified "#272822" "#3C3D37" "#F70057" "#F92672" "#86C30D" "#A6E22E" "#BEB244" "#E6DB74" "#40CAE4" "#66D9EF" "#FB35EA" "#FD5FF0" "#74DBCD" "#A1EFE4" "#F8F8F2" "#F8F8F0"))
- '(xterm-color-names
-   ["black" "#ff8059" "#44bc44" "#d0bc00" "#2fafff" "#feacd0" "#00d3d0" "gray65"])
- '(xterm-color-names-bright
-   ["gray35" "#ef8b50" "#70b900" "#c0c530" "#79a8ff" "#f78fe7" "#4ae2f0" "white"])
- '(yascroll:delay-to-hide nil))
+ '(tool-bar-mode nil))
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "FiraCode Nerd Font" :foundry "CTDB" :slant normal :weight normal :height 113 :width normal)))))
+ '(default ((t (:family "SauceCodePro Nerd Font" :foundry "ADBO" :slant normal :weight normal :height 128 :width normal)))))
 
 
 ;;-------------------------------------------------
@@ -130,10 +45,10 @@
 ;;visual helpers
 (menu-bar-mode 1)
 (tool-bar-mode -1)
-(blink-cursor-mode -1)
-(scroll-bar-mode -1)
-(global-hl-line-mode -1)
-(line-number-mode +1)
+(blink-cursor-mode 1)
+(scroll-bar-mode 1)
+(global-hl-line-mode 1)
+(line-number-mode 1)
 (global-display-line-numbers-mode 1)
 (column-number-mode t)
 (size-indication-mode t)
@@ -152,7 +67,7 @@
       scroll-conservatively 100
       scroll-preserve-screen-position 1)
 ;; comment
-(global-set-key (kbd "C-/") 'comment-region)
+(global-set-key (kbd "C-c C-/") 'comment-region)
 
 ;;prettify symbol
 (global-prettify-symbols-mode t)
@@ -169,14 +84,16 @@
   (interactive)
   (split-window-below)
   (balance-windows)
-  (other-window 1))
+  (other-window 1)
+  )
 (global-set-key (kbd "C-x 2") 'split-and-follow-horizontally)
 
 (defun split-and-follow-vertically ()
   (interactive)
   (split-window-right)
   (balance-windows)
-  (other-window 1))
+;;  (other-window 1)
+  )
 (global-set-key (kbd "C-x 3") 'split-and-follow-vertically)
 
 ;;yes or no -> t or n
@@ -236,10 +153,10 @@
 ;; Interface Enhabcement
 
 ;; IVY
-(straight-use-package 'counsel)
+;; (straight-use-package 'counsel)
 (straight-use-package 'swiper)
-;;(global-set-key (kbd "M-x") 'counsel-M-x)
-(global-set-key (kbd "C-x C-f") 'counsel-find-file)
+;; (global-set-key (kbd "M-x") 'counsel-M-x)
+;; (global-set-key (kbd "C-x C-f") 'counsel-find-file)
 (global-set-key (kbd "M-/") 'swiper)
 
 ;; WHICH KEY
@@ -253,6 +170,7 @@
 
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-x C-b") 'helm-buffers-list)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
 ;; The default "C-x c" is quite close to "C-x C-c", which quits Emacs.
 ;; Changed to "C-c h". Note: We must set "C-c h" globally, because we
 ;; cannot change `helm-command-prefix-key' once `helm-config' is loaded.
@@ -271,12 +189,12 @@
       helm-ff-search-library-in-sexp        t ; search for library in `require' and `declare-function' sexp.
       helm-scroll-amount                    8 ; scroll 8 lines other window using M-<next>/M-<prior>
       helm-ff-file-name-history-use-recentf t
+      helm-autoresize-mode 1
+      helm-autoresize-max-height 0
+      helm-autoresize-min-height 20
       helm-echo-input-in-header-line t)
 
-(setq helm-autoresize-max-height 0)
-(setq helm-autoresize-min-height 20)
-(helm-autoresize-mode 1)
-
+;; (helm-autoresize-mode 1)
 (helm-mode 1)
 
 ;; PRESCIENT
@@ -322,10 +240,6 @@
 (dimmer-configure-helm)
 (dimmer-mode t)
 
-;;scroll
-(straight-use-package 'yascroll)
-(global-yascroll-bar-mode t)
-
 ;; windows switch
 (straight-use-package 'switch-window)
 (setq switch-window-input-style 'minibuffer)
@@ -347,7 +261,7 @@
 
 ;;CRUX
 (straight-use-package 'crux)
-(global-set-key (kbd "C-k") 'crux-smart-kill-line)
+;; (global-set-key (kbd "C-k") 'crux-smart-kill-line)
 (global-set-key (kbd "C-c n") 'crux-cleanup-buffer-or-region)
 (global-set-key (kbd "C-c f") 'crux-recentf-find-file)
 (global-set-key (kbd "C-a") 'crux-move-beginning-of-line)
@@ -381,7 +295,7 @@
 (add-hook 'lsp-mode 'lsp-enable-which-key-integration)
 (setq lsp-idle-delay 0.1)
 (setq lsp-headerline-breadcrumb-enable 1)
-;;(add-hook 'prog-mode-hook 'lsp)
+;; (add-hook 'prog-mode-hook 'lsp)
 (add-hook 'c++-mode-hook #'lsp)
 (add-hook 'c-mode-hook #'lsp)
 ;;(add-hook 'haskell-mode-hook #'lsp)
@@ -398,8 +312,9 @@
 (with-eval-after-load 'cc-mode
   (fset 'c-indent-region 'clang-format-region)
   (define-key c-mode-base-map (kbd "<C-tab>") 'company-complete)
-  (define-key c-mode-base-map (kbd "C-M-\\") 'clang-format-region)
-  (define-key c-mode-base-map (kbd "C-i") 'clang-format))
+  (define-key c-mode-base-map (kbd "C-c C-f") 'clang-format-region)
+  (define-key c-mode-base-map (kbd "C-i") 'clang-format)
+  )
 
 ;; Completion
 (straight-use-package 'company)
@@ -425,11 +340,12 @@
 (global-set-key (kbd "C-M-g") 'magit-status)
 ;;THEMES
 
-;; (straight-use-package 'zenburn-theme)
+(straight-use-package 'zenburn-theme)
 (straight-use-package 'kaolin-themes)
+(straight-use-package 'monokai-theme)
 
 
-(load-theme 'kaolin-aurora)
+(load-theme 'monokai)
 
 ;; diff-hl
 (straight-use-package 'diff-hl)
@@ -438,6 +354,11 @@
 (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
 (diff-hl-margin-mode 1)
 (diff-hl-flydiff-mode 1)
+
+;; Smooth scroll
+(straight-use-package 'sublimity)
+;; (require 'sublimity-scroll)
+(sublimity-mode +1)
 
 (provide 'init)
 

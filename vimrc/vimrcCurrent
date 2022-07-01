@@ -28,6 +28,12 @@ set showcmd
 set autoread
 
 set guifont=JetBrainsMono\ Nerd\ Font\ 12
+
+" REMAP Keys
+inoremap jk <ESC>
+vnoremap jk <ESC>
+let mapleader = "'"
+
 " Bash like keys for the command line
 cnoremap <C-A>		<Home>
 cnoremap <C-E>		<End>
@@ -58,9 +64,9 @@ set ffs=unix,dos
 " Text Formatting 
 set expandtab
 set smarttab
-set shiftwidth=4
-set tabstop=4
-set softtabstop=4
+set shiftwidth=2
+set tabstop=2
+set softtabstop=2
 set lbr
 set tw=500
 
@@ -217,7 +223,7 @@ syntax on
 """"""""""""""""
 "" Airline
 let g:airline_powerline_fonts = 1
-colorscheme material
+colorscheme monokai
 
 "Coc Vim
 " TextEdit might fail if hidden is not set.
@@ -523,5 +529,4 @@ function! VisualSelection(direction, extra_filter) range
     let @/ = l:pattern
     let @" = l:saved_reg
 endfunction
-
 

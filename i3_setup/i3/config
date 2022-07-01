@@ -1,33 +1,40 @@
- ############# i3 config file
+############# i3 config file
 ### Mod key
 set $mod Mod4
-
+set $term kitty
 ### Fonts
 #font pango:FantasqueSansMono Nerd Font 10
-font pango:IBM Plex Sans, FontAwesome 11
+font pango: IBM PLex Sans 11
+
+#font pango: Inter 11
 ### Border & Gaps
-default_border normal 2
-#default_floating_border pixel 2
-gaps inner 2
-gaps outer 0
+default_border normal 0
+#default_border pixel 1
+# default_floating_border pixel 1
+#gaps inner 2
+#gaps outer 0
+
+# Bold window title
 #for_window [class=".*"] title_format "<b> %title</b>"
-smart_gaps on
-smart_borders on
+
+#smart_gaps on
+#smart_borders on
 
 # focus_on_window_activation focus
-hide_edge_borders smart
+#hide_edge_borders smart
 #focus_follows_mouse no
 
 ### Change borders
-bindsym $mod+Shift+t border normal 2
-bindsym $mod+t border pixel 2
+bindsym $mod+Shift+t border normal 1
+bindsym $mod+t border pixel 1
 
 ### start a terminal
-bindsym $mod+Return exec kitty
+bindsym $mod+Return exec $term
 
 ### start rofi
-bindsym $mod+d exec "rofi --no-lazy-grab -show drun -config ~/.config/rofi/config.rasi"
-bindsym $mod+Shift+d exec "rofi --no-lazy-grab -show window -config ~/.config/rofi/config.rasi"
+bindsym $mod+d exec "rofi -show drun -config ~/.config/rofi/config.rasi"
+bindsym $mod+Shift+d exec "rofi -show window -config ~/.config/rofi/config.rasi"
+bindsym $mod+p exec dmenu_run
 
 ### i3 window control
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -56,11 +63,11 @@ bindsym $mod+u exec i3-input -F 'unmark %s' -l 1 -P 'Unmark:'
 bindsym $mod+Shift+q kill
 
 
-# # change focus
-# bindsym $mod+j focus left
-# bindsym $mod+k focus down
-# bindsym $mod+l focus up
-# bindsym $mod+semicolon focus right
+# change focus
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -108,16 +115,16 @@ bindsym $mod+c focus child
 
 #### Define names for default workspaces
 
-#set $ws1 "1:謹"
-#set $ws2 "2:"
-#set $ws3 "3:"
-#set $ws4 "4:"
-#set $ws5 "5:"
-#set $ws6 "6:"
-#set $ws7 "7:"
-#set $ws8 "8:"
-#set $ws9 "9:切"
-#set $ws10 "10:"
+workspace $ws1  output HDMI1
+workspace $ws2  output HDMI1
+workspace $ws3  output HDMI1
+workspace $ws4  output HDMI1
+workspace $ws5  output HDMI1
+workspace $ws6  output eDP1
+workspace $ws7  output eDP1
+workspace $ws8  output eDP1
+workspace $ws9  output eDP1
+workspace $ws10 output eDP1
 
 set $ws1 "1"
 set $ws2 "2"
@@ -131,40 +138,74 @@ set $ws9 "9"
 set $ws10 "10"
 
 #assign workspace
-assign [class="vlc"]		$ws4
-assign [class="totem"]		$ws4
-assign [class="clementine"]		$ws4
+assign [class="vlc"	]		number	$ws4
+assign [class="totem"]		number	$ws4
+assign [class="clementine"]	number	$ws4
 
 #for_window [workspace=$ws3] layout tabbed
-# for_window [class="Brave-browser"] border pixel 2
+#for_window [class="Brave-browser"] border normal
 # for_window [class="Google-chrome"] border pixel 2
 # for_window [class="Chromium"] border pixel 2
 # for_window [class="Firefox"] border pixel 2
 # for_window [class="Spotify"] border pixel 2
 for_window [title="About Mozilla Firefox"] floating enable
 
+# Open specific applications in floating mode
+for_window [title="alsamixer"] floating enable border pixel 1
+for_window [class="calamares"] floating enable border normal 0
+for_window [class="Clipgrab"] floating enable
+for_window [title="File Transfer*"] floating enable border normal
+for_window [class="fpakman"] floating enable
+for_window [class="GParted"] floating enable border normal
+for_window [title="i3_help"] floating enable sticky enable border normal
+for_window [class="Lightdm-settings"] floating enable
+for_window [class="Lxappearance"] floating enable sticky enable border normal 0
+for_window [class="Manjaro-hello"] floating enable border normal 0
+for_window [title="MuseScore: Play Panel"] floating enable
+for_window [class="Nitrogen"] floating enable sticky enable border normal 0
+for_window [class="Oblogout"] fullscreen enable
+for_window [class="octopi"] floating enable
+for_window [title="About Pale Moon"] floating enable
+for_window [class="Pavucontrol"] floating enable
+for_window [class="qt5ct"] floating enable sticky enable border normal
+for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
+for_window [class="Simple-scan"] floating enable border normal
+for_window [class="Skype"] floating enable border normal
+for_window [class="Timeset-gui"] floating enable border normal
+for_window [class="(?i)virtualbox"] floating enable border normal
+for_window [class="Xfburn"] floating enable
+for_window [class="xdman-Main"] floating enable border pixel 1
+for_window [class="netbeans"] floating enable
+for_window [class="kazam"] floating enable
+for_window [class="scrcpy"] floating enable border normal 0
+for_window [class="Gcolor"] floating enable border normal 0
+for_window [class="vokoscreenNG"] floating enable border normal 0
+
+for_window [class="*Remote Desktop Connection*"] floating enable border pixel 1
+for_window [class="*VMwareUnityWindow*"] flaoting enable border pixel 1
+for_window [class="Find My VDesk"] floating enable border pixel 0
+for_window [class="Credential Manager UI Host"] floating enable pixel 0
+for_window [class="Remote Desktop Connection"] floating enable pixel 0
+
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 for_window [title="Preferences$"] floating enable
-for_window [class="xdman"] floating enable
 
-
+for_window [class="xdman"] floating enable border pixel 1
 for_window [title="Network Connections"] floating enable
 for_window [class="imagewriter"] floating enable
-for_window [class="java-lang-Thread" title=" "] floating enable
-for_window [title="Calculator"] floating enable
 
 # switch to workspace
-bindsym $mod+1 workspace $ws1
-bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace $ws4
-bindsym $mod+5 workspace $ws5
-bindsym $mod+6 workspace $ws6
-bindsym $mod+7 workspace $ws7
-bindsym $mod+8 workspace $ws8
-bindsym $mod+9 workspace $ws9
-bindsym $mod+0 workspace $ws10
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1
@@ -190,152 +231,30 @@ bindsym Ctrl+$mod+Delete exec --no-startup-id "sleep 1 && xset s activate"
 
 ### Resize windows
 mode "resize" {
-		# These bindings trigger as soon as you enter the resize mode
+    # These bindings trigger as soon as you enter the resize mode
 
-		# Pressing left will shrink the window’s width.
-		# Pressing right will grow the window’s width.
-		# Pressing up will shrink the window’s height.
-		# Pressing down will grow the window’s height.
-		bindsym j resize shrink width 10 px or 10 ppt
-		bindsym k resize grow height 10 px or 10 ppt
-		bindsym l resize shrink height 10 px or 10 ppt
-		bindsym semicolon resize grow width 10 px or 10 ppt
+    # Pressing left will shrink the window’s width.
+    # Pressing right will grow the window’s width.
+    # Pressing up will shrink the window’s height.
+    # Pressing down will grow the window’s height.
+    bindsym j resize shrink width 10 px or 10 ppt
+    bindsym k resize grow height 10 px or 10 ppt
+    bindsym l resize shrink height 10 px or 10 ppt
+    bindsym semicolon resize grow width 10 px or 10 ppt
 
-		# same bindings, but for the arrow keys
-		bindsym Left resize shrink width 10 px or 10 ppt
-		bindsym Down resize grow height 10 px or 10 ppt
-		bindsym Up resize shrink height 10 px or 10 ppt
-		bindsym Right resize grow width 10 px or 10 ppt
+    # same bindings, but for the arrow keys
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
 
-		# back to normal: Enter or Escape or $mod+r
-		bindsym Return mode "default"
-		bindsym Escape mode "default"
-		bindsym $mod+r mode "default"
+    # back to normal: Enter or Escape or $mod+r
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
 }
 
 bindsym $mod+r mode "resize"
-
-set $mode_gaps Gaps: (o)uter, (i)nner, (h)orizontal, (v)ertical, (t)op, (r)ight, (b)ottom, (l)eft
-set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
-set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
-set $mode_gaps_horiz Horizontal Gaps: +|-|0 (local), Shift + +|-|0 (global)
-set $mode_gaps_verti Vertical Gaps: +|-|0 (local), Shift + +|-|0 (global)
-set $mode_gaps_top Top Gaps: +|-|0 (local), Shift + +|-|0 (global)
-set $mode_gaps_right Right Gaps: +|-|0 (local), Shift + +|-|0 (global)
-set $mode_gaps_bottom Bottom Gaps: +|-|0 (local), Shift + +|-|0 (global)
-set $mode_gaps_left Left Gaps: +|-|0 (local), Shift + +|-|0 (global)
-bindsym $mod+Shift+g mode "$mode_gaps"
-
-mode "$mode_gaps" {
-		bindsym o      mode "$mode_gaps_outer"
-		bindsym i      mode "$mode_gaps_inner"
-		bindsym h      mode "$mode_gaps_horiz"
-		bindsym v      mode "$mode_gaps_verti"
-		bindsym t      mode "$mode_gaps_top"
-		bindsym r      mode "$mode_gaps_right"
-		bindsym b      mode "$mode_gaps_bottom"
-		bindsym l      mode "$mode_gaps_left"
-		bindsym Return mode "$mode_gaps"
-		bindsym Escape mode "default"
-}
-
-mode "$mode_gaps_outer" {
-		bindsym plus  gaps outer current plus 5
-		bindsym minus gaps outer current minus 5
-		bindsym 0     gaps outer current set 0
-
-		bindsym Shift+plus  gaps outer all plus 5
-		bindsym Shift+minus gaps outer all minus 5
-		bindsym Shift+0     gaps outer all set 0
-
-		bindsym Return mode "$mode_gaps"
-		bindsym Escape mode "default"
-}
-mode "$mode_gaps_inner" {
-		bindsym plus  gaps inner current plus 5
-		bindsym minus gaps inner current minus 5
-		bindsym 0     gaps inner current set 0
-
-		bindsym Shift+plus  gaps inner all plus 5
-		bindsym Shift+minus gaps inner all minus 5
-		bindsym Shift+0     gaps inner all set 0
-
-		bindsym Return mode "$mode_gaps"
-		bindsym Escape mode "default"
-}
-mode "$mode_gaps_horiz" {
-		bindsym plus  gaps horizontal current plus 5
-		bindsym minus gaps horizontal current minus 5
-		bindsym 0     gaps horizontal current set 0
-
-		bindsym Shift+plus  gaps horizontal all plus 5
-		bindsym Shift+minus gaps horizontal all minus 5
-		bindsym Shift+0     gaps horizontal all set 0
-
-		bindsym Return mode "$mode_gaps"
-		bindsym Escape mode "default"
-}
-mode "$mode_gaps_verti" {
-		bindsym plus  gaps vertical current plus 5
-		bindsym minus gaps vertical current minus 5
-		bindsym 0     gaps vertical current set 0
-
-		bindsym Shift+plus  gaps vertical all plus 5
-		bindsym Shift+minus gaps vertical all minus 5
-		bindsym Shift+0     gaps vertical all set 0
-
-		bindsym Return mode "$mode_gaps"
-		bindsym Escape mode "default"
-}
-mode "$mode_gaps_top" {
-		bindsym plus  gaps top current plus 5
-		bindsym minus gaps top current minus 5
-		bindsym 0     gaps top current set 0
-
-		bindsym Shift+plus  gaps top all plus 5
-		bindsym Shift+minus gaps top all minus 5
-		bindsym Shift+0     gaps top all set 0
-
-		bindsym Return mode "$mode_gaps"
-		bindsym Escape mode "default"
-}
-mode "$mode_gaps_right" {
-		bindsym plus  gaps right current plus 5
-		bindsym minus gaps right current minus 5
-		bindsym 0     gaps right current set 0
-
-		bindsym Shift+plus  gaps right all plus 5
-		bindsym Shift+minus gaps right all minus 5
-		bindsym Shift+0     gaps right all set 0
-
-		bindsym Return mode "$mode_gaps"
-		bindsym Escape mode "default"
-}
-mode "$mode_gaps_bottom" {
-		bindsym plus  gaps bottom current plus 5
-		bindsym minus gaps bottom current minus 5
-		bindsym 0     gaps bottom current set 0
-
-		bindsym Shift+plus  gaps bottom all plus 5
-		bindsym Shift+minus gaps bottom all minus 5
-		bindsym Shift+0     gaps bottom all set 0
-
-		bindsym Return mode "$mode_gaps"
-		bindsym Escape mode "default"
-}
-mode "$mode_gaps_left" {
-		bindsym plus  gaps left current plus 5
-		bindsym minus gaps left current minus 5
-		bindsym 0     gaps left current set 0
-
-		bindsym Shift+plus  gaps left all plus 5
-		bindsym Shift+minus gaps left all minus 5
-		bindsym Shift+0     gaps left all set 0
-
-		bindsym Return mode "$mode_gaps"
-		bindsym Escape mode "default"
-}
-
 
 #### Color config
 
@@ -345,45 +264,60 @@ mode "$mode_gaps_left" {
 #client.focused			#7dc6bf #80cbc4 #212121 #393939   #00adb5
 #client.unfocused		#333333 #222222 #ffffff #212121   #212121
 #client.focused_inactive #333333 #222222 #ffffff #212121   #212121
- #### Color config
- # class                 border  bground text    indicator child_border
- client.focused          #285577 #285577 #FFFFFF #E84545 #285577
- client.focused_inactive #333333 #5F676A #FFFFFF #484E50 #5F676A
- client.unfocused        #333333 #222222 #888888 #292D2E #222222
- client.urgent           #2F343A #900000 #FFFFFF #900000 #900000
- client.placeholder      #000000 #0C0C0C #FFFFFF #000000
+# #### Color config
+# # class                 border  bground text    indicator child_border
+# client.focused          #285577 #285577 #FFFFFF #E84545 #285577
+# client.focused_inactive #333333 #5F676A #FFFFFF #484E50 #5F676A
+# client.unfocused        #333333 #222222 #888888 #292D2E #222222
+# client.urgent           #2F343A #900000 #FFFFFF #900000 #900000
+# client.placeholder      #000000 #0C0C0C #FFFFFF #000000
+#### Color config
+# class                 border  bground text    indicator child_border
+client.focused          #457b9d #457b9d #ffffff #E84545 #457b9d
+client.focused_inactive #333333 #5F676A #FFFFFF #484E50 #5F676A
+client.unfocused        #264653 #222831 #888888 #292D2E #264653
+client.urgent           #e76f51 #f08a5d #FFFFFF #900000 #f08a5d
+client.placeholder      #000000 #0C0C0C #FFFFFF #000000
 
 
 ### Startup application snd services
+exec "xrandr --output HDMI1 --mode 2560x1440 --right-of eDP1"
 #exec --no-startup-id /usr/lib/polkit-1/polkitd
 #exec_always --no-startup-id /usr/libexec/kf5/polkit-kde-authentication-agent-1
 exec_always --no-startup-id "$HOME/.config/polybar/launch.sh"
-exec_always --no-startup-id /usr/libexec/polkit-mate-authentication-agent-1
-exec --no-startup-id "xinput --set-prop 'Synaptics TM3127-001' 'libinput Tapping Enabled' 1"
+exec_always --no-startup-id /usr/lib/mate-polkit/polkit-mate-authentication-agent-1
+#exec --no-startup-id "xinput --set-prop 'Synaptics TM3127-001' 'libinput Tapping Enabled' 1"
+
 #system autostart
 exec --no-startup-id nitrogen --restore
 #exec --no-startup-id bash ~/.config/i3/autostart.sh
 exec_always --no-startup-id "numlockx on"
-exec_always --no-startup-id "~/.local/bin/alttab -theme Papirus -d 1 -fg \"#c4c7d1\" -bg \"#1e1e1e\" -frame \"#285577\" -t 128x150 -i 127x64"
-
+exec_always --no-startup-id /home/exp/bin/alttab -theme Papirus -d 1 -fg "#c4c7d1" -bg "#1e1e1e" -frame "#285577" -t 128x150 -i 127x64
+exec_always --no-startup-id exec /home/exp/bin/i3-workspace-names-daemon -d ' | '
 
 
 #exec_always --no-startup-id "killall -9 conky; conky -c ~/.conky/Gotham/Gotham"
 #exec_always --no-startup-id "killall -q dunst; dunst"
-#exec_always --no-startup-id "/usr/libexec/mate-notification-daemon"
+exec_always --no-startup-id "/usr/libexec/mate-notification-daemon"
 exec_always --no-startup-id "/usr/lib64/xfce4/notifyd/xfce4-notifyd"
 exec_always --no-startup-id "killall -q picom;killall -q compton;picom -b --experimental-backends &"
 
-exec "xss-lock -- $HOME/.local/bin/betterlockscreen -l blur"
-exec "xautolock -time 15 -locker '$HOME/.local/bin/betterlockscreen -l blur'"
+exec --no-startup-id "xss-lock -- betterlockscreen -l dimblur"
+#exec "xautolock -time 15 -locker 'betterlockscreen -l blur'"
+exec "/home/exp/.config/i3/xidle.sh"
+
 exec --no-startup-id "/usr/lib/kdeconnectd &"
-exec --no-startup-id "kdeconnect-indicator &"
+
 #exec --no-startup-id "clipit -d 2&> /dev/null"
 exec --no-startup-id "parcellite"
 
 #exec --no-startup-id "telegram-desktop -startintray"
 exec "xfce4-power-manager"
-exec "nm-applet --indicator"
+exec --no-startup-id "nm-applet --indicator"
+exec --no-startup-id klipper
+exec "pasystray"
+
+exec --no-startup-id "sleep 10; kdeconnect-indicator"
 #bindsym Print exec "gnome-screenshot -i"
 bindsym Print exec "spectacle"
 
@@ -391,8 +325,10 @@ bindsym Print exec "spectacle"
 
 ### Short cuts
 #screen Brightness
-bindsym XF86MonBrightnessUp exec light -A 5 # increase screen brightness
-bindsym XF86MonBrightnessDown exec light -U 5 # decrease screen brightness
+#bindsym XF86MonBrightnessUp exec xbacklight -inc 5 # increase screen brightness
+#bindsym XF86MonBrightnessDown exec xbacklight -dec 5 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec light -A 5
+bindsym XF86MonBrightnessDown exec light -U 5
 
 #volume
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl -- set-sink-volume $(pactl -- list sinks short | cut -f2) +5% #increase sound volume
@@ -403,7 +339,7 @@ bindsym XF86AudioMute        exec --no-startup-id pactl set-sink-mute $(pactl --
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
-bindsym $mod+p exec "mpc toggle"
+bindsym $mod+x exec "mpc toggle"
 bindsym $mod+Shift+n exec "mpc next"
 bindsym $mod+Shift+p exec "mpc prev"
 
