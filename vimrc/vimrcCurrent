@@ -223,7 +223,6 @@ syntax on
 """"""""""""""""
 "" Airline
 let g:airline_powerline_fonts = 1
-colorscheme monokai
 
 "Coc Vim
 " TextEdit might fail if hidden is not set.

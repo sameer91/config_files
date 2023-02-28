@@ -1,6 +1,11 @@
 #!/bin/sh
 #set qt5ct in non kde de
-if [[ $XDG_CURRENT_DESKTOP != "KDE" ]]  && [[ $XDG_CURRENT_DESKTOP != "kde" ]]
+#if [[ $XDG_CURRENT_DESKTOP != "KDE" ]]  && [[ $XDG_CURRENT_DESKTOP != "kde" ]]
+#then
+#    export QT_QPA_PLATFORMTHEME=qt5ct
+#fi
+
+if [ "$XDG_SESSION_DESKTOP" != "KDE" ]
 then
-    export QT_QPA_PLATFORMTHEME=qt5ct
+  export QT_QPA_PLATFORMTHEME=qt5ct
 fi

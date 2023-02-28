@@ -16,8 +16,10 @@
    '("de1bf2ed5e8ff97ce2d8f277f1d022a8a9141d5c7afe5248c5df077f30168a1b" "d9a28a009cda74d1d53b1fbd050f31af7a1a105aa2d53738e9aa2515908cac4c" "d516f1e3e5504c26b1123caa311476dc66d26d379539d12f9f4ed51f10629df3" "37c8c2817010e59734fe1f9302a7e6a2b5e8cc648cf6a6cc8b85f3bf17fececf" default))
  '(display-battery-mode t)
  '(global-display-line-numbers-mode t)
+ '(pdf-view-display-size 'fit-height)
  '(size-indication-mode t)
- '(tool-bar-mode nil))
+ '(tool-bar-mode nil)
+ '(warning-suppress-types '((comp))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -28,7 +30,7 @@
 
 
 ;;-------------------------------------------------
-;;--------------- General Stuff -------------------
+;;--------------- General Config ------------------
 ;;-------------------------------------------------
 
 ;;; Code:
@@ -150,7 +152,27 @@
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;;-------------------------------------------------------------
-;; Interface Enhabcement
+;; Interface Enhancement
+
+;;; Helpful
+(straight-use-package 'helpful)
+;; Note that the built-in `describe-function' includes both functions
+;; and macros. `helpful-function' is functions only, so we provide
+;; `helpful-callable' as a drop-in replacement.
+(global-set-key (kbd "C-h f") #'helpful-callable)
+
+(global-set-key (kbd "C-h v") #'helpful-variable)
+(global-set-key (kbd "C-h k") #'helpful-key)
+(global-set-key (kbd "C-h x") #'helpful-command)
+
+;(setq counsel-describe-function-function #'helpful-callable)
+;(setq counsel-describe-variable-function #'helpful-variable)
+
+;; Highlights
+(straight-use-package 'volatile-highlights)
+(require 'volatile-highlights)
+(volatile-highlights-mode t)
+
 
 ;; IVY
 ;; (straight-use-package 'counsel)
@@ -354,6 +376,8 @@
 (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
 (diff-hl-margin-mode 1)
 (diff-hl-flydiff-mode 1)
+
+(straight-use-package 'pdf-tools)
 
 ;; Smooth scroll
 (straight-use-package 'sublimity)
