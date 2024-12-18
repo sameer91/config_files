@@ -31,7 +31,26 @@
  set-mark-command-repeat-pop t
  tooltip-delay 1.5
  truncate-lines nil
- truncate-partial-width-windows nil)
+ truncate-partial-width-windows nil
+
+ ;;Tabs
+ tab-width 2
+ standard-indent 2
+ electric-indent-inhibit t
+ indent-tabs-mode nil
+ c-basic-offset tab-width
+ backward-delete-char-untabify-method 'nil
+
+ ;; Better defaults
+ save-interprogram-paste-before-kill t
+ apropos-do-all t
+ mouse-yank-at-point t
+ require-final-newline t
+ visible-bell t
+ load-prefer-newer t
+ backup-by-copying t
+ frame-inhibit-implied-resize t
+ )
 
 (add-hook 'after-init-hook 'delete-selection-mode)
 
@@ -164,10 +183,6 @@
 (global-set-key (kbd "C-+") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
-;; Train myself to use M-f and M-b instead
-(global-unset-key [M-left])
-(global-unset-key [M-right])
-
 (defun kill-back-to-indentation ()
   "Kill from point back to the first non-whitespace character on the line."
   (interactive)
@@ -248,7 +263,7 @@
 
 (require-package 'which-key)
 (add-hook 'after-init-hook 'which-key-mode)
-(setq-default which-key-idle-delay 1.5)
+(setq-default which-key-idle-delay 0.5)
 (with-eval-after-load 'which-key
   (diminish 'which-key-mode))
 
@@ -263,6 +278,14 @@ ORIG is the advised function, which is called with its ARGS."
 
 (advice-add 'kmacro-call-macro :around 'sanityinc/disable-features-during-macro-call)
 
+
+;; Force emacs movement keys.
+(require-package 'guru-mode)
+(add-hook 'after-init-hook 'guru-global-mode)
+
+;; expand region
+(require-package 'expand-region)
+(global-set-key (kbd "C-=") 'er/expand-region)
 
 (provide 'init-editing-utils)
 ;;; init-editing-utils.el ends here

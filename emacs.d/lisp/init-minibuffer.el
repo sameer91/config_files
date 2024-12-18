@@ -8,6 +8,8 @@
 
   (when (maybe-require-package 'embark)
     (with-eval-after-load 'vertico
+      (define-key vertico-map (kbd "M-o") 'embark-act)
+      (define-key vertico-map (kbd "C-h B") 'embark-bindings)
       (define-key vertico-map (kbd "C-c C-o") 'embark-export)
       (define-key vertico-map (kbd "C-c C-c") 'embark-act)))
 
@@ -34,7 +36,12 @@
     (global-set-key [remap switch-to-buffer-other-window] 'consult-buffer-other-window)
     (global-set-key [remap switch-to-buffer-other-frame] 'consult-buffer-other-frame)
     (global-set-key [remap goto-line] 'consult-goto-line)
-
+    (global-set-key (kbd "M-g f")  'consult-flymake)
+    (global-set-key (kbd "M-g e")  'consult-compile-error)
+    (global-set-key [remap imenu] 'consult-imenu)
+    (global-set-key (kbd "M-g I")  'consult-imenu-multi)
+    (global-set-key (kbd "M-g l") 'consult-line)
+    (global-set-key (kbd "M-g L") 'consult-line-multi)
 
 
     (when (maybe-require-package 'embark-consult)

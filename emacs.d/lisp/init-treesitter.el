@@ -16,6 +16,7 @@
 
 
 ;;; Enable built-in and pre-installed TS modes if the grammars are available
+(setq treesit-extra-load-path '("~/.emacs.d/treesit-langs/"))
 
 (defun sanityinc/auto-configure-treesitter ()
   "Find and configure installed grammars, remap to matching -ts-modes if present.
