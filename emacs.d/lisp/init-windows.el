@@ -10,7 +10,7 @@
 ;; Navigate window layouts with "C-c <left>" and "C-c <right>"
 
 (add-hook 'after-init-hook 'winner-mode)
-
+(global-set-key (kbd "M-o") 'other-window)
 
 ;; Make "C-x o" prompt for a target window when there are more than 2
 (require-package 'switch-window)

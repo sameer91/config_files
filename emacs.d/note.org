@@ -1,0 +1,241 @@
+#+title: Emacs Notes
+#+author: Sameer
+
+* Primer
+| Id | Key    |
+|----+--------|
+| S  | Shift  |
+| C  | Ctrl   |
+| M  | Alt    |
+| s  | Super  |
+
+Things to remember
++ C-- change the direction
++ M-x apropos OR C-h <key> : Searched emacs
++ M-x describe OR C-h <key> : Describes emacs
+
+** Info manual
+Start with C-h i or M-x info
+| Key     | Purpose                |
+|---------+------------------------|
+| [ and ] | previous next node     |
+| l, r    | back / forward history |
+| n, p    | next / previous        |
+| u       | up a node              |
+| SPC     | Scroll one screen      |
+| TAB     | Cycle                  |
+| RET     | Open                   |
+| m       | menu item prompt       |
+| q       | quit                   |
+
+
+* Movement
++ C-M-d  moves down a into a list (lists are paranthesis, quotes)
++ C-M-u moves up out of a list
++ C-M-n Move forward to the next list
++ C-M-p Move backward to the previous list
++ M-} Move forward to end of paragraph
++ M-{Move backward to start of paragraph
++ M-a Move to beginning of sentence
++ M-e Move to end of sentence
++ C-M-a Move to beginning of defun
++ C-M-e Move to end of defun
+
+
+** Bookmark
++ C-x r m Set a bookmark
++ C-x r l List bookmarks
++ C-x r b Jump to bookmark
+
+** Marking
++ M-h Marks the next paragraph
++ C-x h Marks the whole buffer
++ C-M-h Marks the next defun
++ C-x C-p Marks the next page
++ M-@ Marks the next word
++ C-M-<SPC> and C-M-@ Marks the next s-expression
++ C-<SPC>, C-g Deactivates the region
+
+
+* Editing
+** Killing
+| Key Bin    | What it does          |
+|------------+-----------------------|
+| C-d        | Delete Char           |
+| backspace  | Delete Prev Char      |
+| M-d, C-bsp | Kill Word             |
+| C-k        | kill rest of the line |
+| M-k        | Kill sentence         |
+| C-M-k      | Kill s-exp            |
+| C-S-bsp    | Kill current line     |
+|------------+-----------------------|
+Digit argument and work here!!!!
+| Key bind | What it does             |
+|----------+--------------------------|
+| C-w      | Kill region (cut)        |
+| M-w      | Copy to kill ring (copy) |
+| C-M-w    | Append kill              |
+| C-y      | Yank last kill (paste)   |
+| M-y      | Cycle through kill ring  |
+|----------+--------------------------|
+Tips:
+  + Consecutive kill append
+  + Kill ring always stores text
+  + Its global (shared among all buffers) C-h v kill-ring
+  + Killing is deleting
+  + Marking in unnecessary
+
+** Yanking text
+| Key | do                                     |
+|-----+----------------------------------------|
+| C-y | yank last kill                         |
+| M-y | cycle kill-ring, replacing yanked text |
+|     | (C-y then M-y to cycle)                |
+
+** Transposing text
+| Key     | does  |
+|---------+-------|
+| C-t     | char  |
+| M-t     | word  |
+| C-M-t   | s-exp |
+| C-x C-t | line  |
+
+** Filling and Commenting
+M-q fills the paragraph, C-x f, C-x .
+*** Commenting
+| Key             | Do                                 |
+|-----------------+------------------------------------|
+| M-;             | Comment DWIM (Do what I mean)      |
+| C-x C-;         | Comment line                       |
+| M-x comment-box | Comment region as a box            |
+| M-j             | new line and continue as a comment |
+|                 |                                    |
+
+** Search and Replace
+ RegExp follows GNUs standard.
+ - can be called from within isearch as well.
+ | Key            | Do                              |
+ |----------------+---------------------------------|
+ | C-M-%          | Query regexp search and replace |
+ | M-%            | Query search and replace        |
+ | replace-string | Search and replace              |
+ | replace-regexp | Regexp search and replace       |
+- Query Command are interactive i.e. will prompt for instruction at
+  every match.
+  | Query Key bind | Do                                |
+  |----------------+-----------------------------------|
+  | SPC, y         | Replace 1 match and cont.         |
+  | .              | Replace one match and stop        |
+  | RET,q          | Exit without replacing            |
+  | !              | Replaces all matches in buffer    |
+  | ^              | Move point back to previous match |
+  |                |                                   |
+- Case folding apply to replace too.
+
+*** Regular Expressions
+need to use backspash '\' for meta characters otherwise they are
+treated as literal characters.
+| Constructs | Description                                          |   |
+|------------+------------------------------------------------------+---|
+| \\vert     | Alternative                                          |   |
+| \(,\)      | Capturing group                                      |   |
+| \{,\}      | Repetition                                           |   |
+| \<,\>      | begin/end of word                                    |   |
+| \_<,\_>    | begin/end of symbols                                 |   |
+| \scode     | matches any char whose syntax table code is code     |   |
+| \Scode     | matches any char whose syntax table code is  notcode |   |
+
+Syntax classes:
+  - whitespace char (-): whitespace, newlines
+  - word constitutes (w): upper and lower case char
+  - symbol constitues (_): all word constitutes and symbols
+  - punctuation char (.): characters like . ;
+  - open/close parenthesis ('(' and ')'): characters that form a
+    grouped pair i.e. (), [], {}, <>
+  - string characters ("): includes character that mark a string
+    i.e. double and single quotes
+  - open/close comment (<,>): any character that defines the boundary
+    of a comment.
+
+ note: c-u m-x what-curson-position or c-u c-x = to see character
+ class at point.
+
+ | consructs | desc                               |
+ |-----------+------------------------------------|
+ | \1 to \9  | inseart text from grou \n          |
+ | \?        | prompts for text input from user   |
+ | \#        | insers a number inscrmented from 0 |
+ | \&        | inseart whole match string         |
+
+*** changing case
+| key                    | do                   |
+|------------------------+----------------------|
+| c-x c-u                | upcase region        |
+| c-x c-l                | lowercase region     |
+| upcase-initials-region | Capitalize region    |
+|------------------------+----------------------|
+| M-c                    | Capitalize next word |
+| M-u                    | Upcase next word     |
+| M-l                    | lowercase next word  |
+|------------------------+----------------------|
+*** Counting Things
+| Command            | Desc                          |
+|--------------------+-------------------------------|
+| count-matches      | num of pattern matchin regexp |
+| count-words        | --                            |
+| count-words-region | --                            |
+|--------------------+-------------------------------|
+
+** Text Manipulating
+*** Editable Occur
+Mx- occur prints line matching an exression. collects all lines that
+matches a certain pattern. 'e' enters editable occur mode you can
+commit changes by C-c C-c
+*** Deleting Duplicate
+M-x delete-cuplicate-lines, modifiers
+| KEY         | Desc                          |
+|-------------+-------------------------------|
+| Without     | Delete first duplicate        |
+| C-u         | Delete last                   |
+| C-u C-u     | Dely only adjacent            |
+| C-u C-u C-u | Does no delete adjacent black |
+|-------------+-------------------------------|
+
+*** Flushing and Keeping
+| Key         | do                                                |
+|-------------+---------------------------------------------------|
+| flush-lines | Deletes all the line a region matching a pattern  |
+| keep-lines  | keeps lines matchin a patter and remove non-match |
+|-------------+---------------------------------------------------|
+
+*** Joining and Splitting lines
+|---------+-----------------------------------|
+| Key     | Desc                              |
+|---------+-----------------------------------|
+| C-o     | Insert a blank line after point   |
+| C-x C-o | Delete all blank line after point |
+| C-M-o   | Split a line after point          |
+| M-^     | Join line with above              |
+|---------+-----------------------------------|
+
+*** Whitespace command
+|---------------+----------------------------------------|
+| Key           | Des                                    |
+|---------------+----------------------------------------|
+| M-SPC         | Delete all but 1 space or tab          |
+| Cycle-spacing | cycle between one, all and undo        |
+| M-\\          | Delete all space and tabs around point |
+|---------------+----------------------------------------|
+
+** Keyboard Macros
+|-------------+------------------------------------------|
+| Key         | Desc                                     |
+|-------------+------------------------------------------|
+| F3          | Starts macro rec or insert counter value |
+| F4          | Stop macto rec. or play last macro       |
+| C-x ( and ) | Starts and stop macro rec                |
+| C-x e       | Play last macro                          |
+| C-u F3      | Start rec and append to last macro       |
+| C-u F4      | Play second macro in the ring            |
+| numeric F3  | start recording set counter to numeric   |
+ Numeric '0' (C-u N or M-N), plays the macro until an error occurs.

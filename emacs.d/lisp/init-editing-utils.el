@@ -265,7 +265,8 @@
 (add-hook 'after-init-hook 'which-key-mode)
 (setq-default which-key-idle-delay 0.5)
 (with-eval-after-load 'which-key
-  (diminish 'which-key-mode))
+  (diminish 'which-key-mode)
+  (define-key which-key-mode-map (kbd "C-h <f5>") 'which-key-C-h-dispatch))
 
 
 (defun sanityinc/disable-features-during-macro-call (orig &rest args)
