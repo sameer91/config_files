@@ -1,0 +1,3 @@
+[submodule "prelue.emacs.d"]
+	path = prelue.emacs.d
+	url = git@github.com:sameer91/prelude.git
